@@ -40,14 +40,15 @@ import com.qualcomm.robotcore.util.Range;
 
 @TeleOp(name="Basic: Linear OpMode", group="Linear Opmode")
 @Disabled
-public class BasicOpMode_Linear extends LinearOpMode {
+public class TeleOp_Teaching_Together extends LinearOpMode {
 
     /*
-    Create global motor variables, but do not initialize -- hardwareMap!
+    Create global motor variables, but do not initialize!
     Create an ElapsedTime variable, and initialize this.
 
     Declare below
      */
+
 
     /*
     So, here we need to declare some variables for working with encoders
@@ -62,6 +63,8 @@ public class BasicOpMode_Linear extends LinearOpMode {
 
     Declare all these values below
      */
+
+    
 
     @Override
     public void runOpMode() {

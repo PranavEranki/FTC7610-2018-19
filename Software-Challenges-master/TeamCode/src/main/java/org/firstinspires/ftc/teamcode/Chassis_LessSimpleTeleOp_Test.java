@@ -46,7 +46,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 
 @TeleOp(name="Final Tele-Op", group="Linear Opmode")  // @Autonomous(...) is the other common choice
-public class TeleOp_Final extends LinearOpMode {
+public class Chassis_LessSimpleTeleOp_Test extends LinearOpMode {
 
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
@@ -79,7 +79,7 @@ public class TeleOp_Final extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
-        openServo();
+
 
         while (opModeIsActive()) {
             telemetry.addData("Status", "Run Time: " + runtime.toString());
@@ -134,3 +134,5 @@ public class TeleOp_Final extends LinearOpMode {
     }
 
 }
+
+// swapnil test
