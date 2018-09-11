@@ -1,4 +1,4 @@
-/
+
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name="Hard-Code Alignment Test", group="Autonomous")
 
-public class Test_Encoder extends LinearOpMode {
+public class TeachingTogetherSolution extends LinearOpMode {
 
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
