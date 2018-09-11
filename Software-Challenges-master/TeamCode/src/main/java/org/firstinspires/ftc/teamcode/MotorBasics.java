@@ -36,6 +36,21 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
+/**
+ * Code purpose:
+ * To serve as a demo for how to use the basics of motors. Goes over motor initialization, directions,
+ * and how to set their power / get their power and print to telemetry.
+ *
+ * Changes:
+ * Changed some telemetry values and removed a couple statements using this.time which gave errors.
+ * Also renamed the file from 'Motor' to MotorBasics
+ *
+ * Functional:
+ * The code works without errors as of 9/10/18
+ *
+ * Author:
+ * Pranav Eranki on 9/10/2018
+ */
 
 @TeleOp(name="MotorsBasics", group="MotorChallenge")
 public class MotorBasics extends LinearOpMode {
