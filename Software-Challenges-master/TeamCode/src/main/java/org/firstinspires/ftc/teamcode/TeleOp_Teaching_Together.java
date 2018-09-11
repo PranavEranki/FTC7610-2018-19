@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.robotcontroller.external.samples;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -40,14 +40,19 @@ import com.qualcomm.robotcore.util.Range;
 
 @TeleOp(name="Basic: Linear OpMode", group="Linear Opmode")
 @Disabled
-public class BasicOpMode_Linear extends LinearOpMode {
+public class TeleOp_Teaching_Together extends LinearOpMode {
 
     /*
-    Create global motor variables, but do not initialize -- hardwareMap!
+    Create global motor variables, but do not initialize!
     Create an ElapsedTime variable, and initialize this.
 
     Declare below
      */
+
+    private ElapsedTime runtime = new ElapsedTime();
+
+    private DcMotor leftMotor = null;
+    private DcMotor rightMotor = null;
 
     /*
     So, here we need to declare some variables for working with encoders
@@ -62,6 +67,12 @@ public class BasicOpMode_Linear extends LinearOpMode {
 
     Declare all these values below
      */
+
+    static final double     COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
+    static final double     DRIVE_GEAR_REDUCTION    = 2.0 ;     // This is < 1.0 if geared UP
+    static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
+    static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
+            (WHEEL_DIAMETER_INCHES * 3.1415);
 
     @Override
     public void runOpMode() {
