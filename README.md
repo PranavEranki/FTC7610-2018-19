@@ -1,9 +1,11 @@
 # FTC7610-2018-19
-Code for FTC 7610 2018-2019 Season.
+Code for Cupertino High School FTC 7610 2018-2019 Season.
 
-Cupertino High School
+The App folder is our final project. It has been changed from its previous name 'Software-challenges' as of 9/10
 
-[Team Code folder link](https://github.com/PranavEranki/FTC7610-2018-19/tree/master/ftc_app/ftc_app-master/TeamCode/src/main/java/org/firstinspires/ftc/teamcode)
+The App folder contains a lot of training scripts as of 9/10
+
+[Team Code folder link](App/TeamCode/src/main/java/org/firstinspires/ftc/teamcode)
 
 ORDER OF EXECUTION WHEN DOING YOUR OWN CODE:
 1. BEFORE STARTING - __git pull__ - this is to get the latest version of code
