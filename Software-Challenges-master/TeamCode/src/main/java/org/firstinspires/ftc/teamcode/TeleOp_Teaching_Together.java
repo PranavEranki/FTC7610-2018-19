@@ -64,7 +64,6 @@ public class TeleOp_Teaching_Together extends LinearOpMode {
     Declare all these values below
      */
 
-    
 
     @Override
     public void runOpMode() {
