@@ -68,32 +68,6 @@ public class Motors extends LinearOpMode {
 
             ////////////////////////////////////////////
 
-    /*
-            // Robot Simulator - don't touch!
-
-            double leftPower = leftDrive.getPower();
-            double rightPower = rightDrive.getPower();
-            double distance;
-            double rotation;
-            double time;
-            double elapsed;
-            double absPower;
-
-            time = runtime.time();
-            while (leftPower > 0 || rightPower > 0) {
-                leftPower = leftDrive.getPower();
-                rightPower = rightDrive.getPower
-                elapsed = runtime.time() - time;
-                absPower = leftPower - rightPower;
-                if (absPower == 0) {
-                    distance = rightPower * (elapsed / 0.4) * 4 * 3.14;
-                    telemetry.addData("Moving", Double.toString(distance) + " inches");
-                } else {
-                    rotation = absPower * (elapsed / 0.4) * 4 * 3.14 * 12 * 3.14 / 90;
-                    telemetry.addData("Turning", Double.toString(rotation) + " inches");
-                }
-            }
-            */
             double leftPower = leftDrive.getPower();
             double rightPower = rightDrive.getPower();
 
