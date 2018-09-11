@@ -1,30 +1,4 @@
  /* Copyright (c) 2017 FIRST. All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted (subject to the limitations in the disclaimer below) provided that
- * the following conditions are met:
- *
- * Redistributions of source code must retain the above copyright notice, this list
- * of conditions and the following disclaimer.
- *
- * Redistributions in binary form must reproduce the above copyright notice, this
- * list of conditions and the following disclaimer in the documentation and/or
- * other materials provided with the distribution.
- *
- * Neither the name of FIRST nor the names of its contributors may be used to endorse or
- * promote products derived from this software without specific prior written permission.
- *
- * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS
- * LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 package org.firstinspires.ftc.teamcode;
@@ -38,9 +12,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 
-@TeleOp(name="Basic: Linear OpMode", group="Linear Opmode")
+@TeleOp(name="LinearOpMode Problem", group="Linear Opmode")
 @Disabled
-public class TeleOp_Teaching_Together extends LinearOpMode {
+public class TeleOp_Teaching_Together_Problem extends LinearOpMode {
 
     /*
     Create global motor variables, but do not initialize!
@@ -106,11 +80,15 @@ public class TeleOp_Teaching_Together extends LinearOpMode {
             //position specified. So, we need to have a loop to account for what to do while they are
             // going to that position specified
 
+            //until you declare your motors, the while loop statement below will give you an error
+            //once you declare your motors, uncomment the while loop then do the exercise inside
+            /*
             while (leftMotor.isBusy() && rightMotor.isBusy()) {
-                //Now, for telemetry, telemtry both the target positions of the motors, then update the telemetry
+                //Now, for telemetry, telemetry both the target positions of the motors, then update the telemetry
                 // hint - use motor_name.getTargetPosition();
                 // do the telemetry in this while loop
             }
+            */
 
             //reset the power of both motors by setting their powers to 0
 

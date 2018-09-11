@@ -37,11 +37,11 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 
-@TeleOp(name="Motors", group="MotorChallenge")
-public class Motors extends LinearOpMode {
+@TeleOp(name="MotorsBasics", group="MotorChallenge")
+public class MotorBasics extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
--
+
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
 
@@ -61,12 +61,8 @@ public class Motors extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            ///////// All your code goes here!///////////
-
             leftDrive.setPower(gamepad1.left_stick_y);
             rightDrive.setPower(gamepad1.right_stick_y);
-
-            ////////////////////////////////////////////
 
             double leftPower = leftDrive.getPower();
             double rightPower = rightDrive.getPower();

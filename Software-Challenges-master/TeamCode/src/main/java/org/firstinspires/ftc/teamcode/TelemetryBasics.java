@@ -39,7 +39,7 @@ import com.qualcomm.robotcore.util.Range;
 //update check 2
 
 @TeleOp(name="Telemetry", group="TelemetryPractice")
-public class Telemetry extends LinearOpMode {
+public class TelemetryBasics extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -53,13 +53,7 @@ public class Telemetry extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            ///////// All your code goes here!///////////
-
-
-
-
-
-            ////////////////////////////////////////////
+            telemetry.addData("Status", "On 7610!");
 
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());

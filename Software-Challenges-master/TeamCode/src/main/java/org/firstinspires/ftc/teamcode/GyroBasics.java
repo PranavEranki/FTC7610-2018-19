@@ -39,7 +39,7 @@ import com.qualcomm.robotcore.util.Range;
 
 
 @Autonomous(name="Gyros", group="GyroChallenge")
-public class Gyros extends LinearOpMode {
+public class GyroBasics extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
     ModernRoboticsI2cGyro gyro = null;                    // Additional Gyro device
@@ -93,14 +93,6 @@ public class Gyros extends LinearOpMode {
         }
 
         gyro.resetZAxisIntegrator();
-
-        ///////// All your code goes here!///////////
-
-
-
-
-        ////////////////////////////////////////////
-
 
         telemetry.addData("Path", "Complete");
         telemetry.update();

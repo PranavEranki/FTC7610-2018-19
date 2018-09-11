@@ -8,9 +8,9 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-@Autonomous(name="Hard-Code Alignment Test", group="Autonomous")
+@Autonomous(name="LinearOpMode Solution", group="Autonomous")
 
-public class TeachingTogetherSolution extends LinearOpMode {
+public class TeleOp_TeachingTogether_Solution extends LinearOpMode {
 
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();

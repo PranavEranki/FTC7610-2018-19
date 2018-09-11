@@ -38,7 +38,7 @@ import com.qualcomm.robotcore.util.Range;
 
 
 @TeleOp(name="Servos", group="ServoChallenge")
-public class Servos extends LinearOpMode {
+public class ServoBasics extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
     private Servo servo = null;
