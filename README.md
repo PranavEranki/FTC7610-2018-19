@@ -17,4 +17,4 @@ ORDER OF EXECUTION WHEN DOING YOUR OWN CODE:
 Things to keep in mind:
 Whenever you change code, please write a small multi-line comment at the top of the file which you changed explaining what you changed in the file, what you were supposed to do, and if it worked or not - this greatly helps in debugging. Also put who wrote the code so we can contact you if need be.
 
-Here is an [example](ExampleWriteup.PNG) of that paragraph:
+Here is an [example](ExampleWriteup.PNG) of that paragraph.
