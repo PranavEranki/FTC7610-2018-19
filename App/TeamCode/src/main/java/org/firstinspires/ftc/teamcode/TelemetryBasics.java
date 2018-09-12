@@ -32,49 +32,33 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
+//update check 2
 
-@TeleOp(name="Servos", group="ServoChallenge")
-public class Servos extends LinearOpMode {
+@TeleOp(name="Telemetry", group="TelemetryPractice")
+public class TelemetryBasics extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
-    private Servo servo = null;
-
-
 
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        servo = hardwareMap.get(Servo.class, "servo");
-
-        servo.setDirection(Servo.Direction.REVERSE);
-
         waitForStart();
         runtime.reset();
 
         while (opModeIsActive()) {
 
-            ///////// All your code goes here!///////////
+            telemetry.addData("Status", "On 7610!");
 
-
-
-
-            ////////////////////////////////////////////
-
-
-            // Robot Simulator - don't touch!
-
-
-            double servoPower = servo.getPosition();
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Servos", "Position: " + Double.toString(servoPower));
             telemetry.update();
+
         }
     }
 }

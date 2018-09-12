@@ -1,15 +1,17 @@
-package com.qualcomm.ftcrobotcontroller.opmodes;
+package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.ViewParent;
 
-public class Mecanum extends OpMode {
+public class Chassis_SimpleLinearOpMode_Test extends OpMode {
 
     DcMotor rightMotor; // Right side wheels
     DcMotor leftMotor; // Left Side Wheels
@@ -19,10 +21,10 @@ public class Mecanum extends OpMode {
         // HERE WE ACCESS ALL FOUR MOTORS ON THE CHASSIS, ASSUMING WE HAVE 4 MOTORS FOR 4 WHEELS
         rightMotor = hardwareMap.dcMotor.get("right_motor");
         leftMotor = hardwareMap.dcMotor.get("left_motor");
-        currTime = this.time;
 
-        frontright.setDirection(DcMotor.Direction.REVERSE);
-        backright.setDirection(DcMotor.Direction.REVERSE);
+
+        leftMotor.setDirection(DcMotor.Direction.FORWARD);
+        rightMotor.setDirection(DcMotor.Direction.REVERSE);
         //reverses right side, so collector is front
 
 
@@ -31,7 +33,7 @@ public class Mecanum extends OpMode {
     @Override
     public void loop() {
         // Gamepad 1
-        currTime = this.time;
+
 
         //start test
 

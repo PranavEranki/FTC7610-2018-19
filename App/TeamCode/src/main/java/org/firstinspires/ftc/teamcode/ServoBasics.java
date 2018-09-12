@@ -32,29 +32,27 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 
-@TeleOp(name="Motors", group="MotorChallenge")
-public class Motors extends LinearOpMode {
+@TeleOp(name="Servos", group="ServoChallenge")
+public class ServoBasics extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
+    private Servo servo = null;
 
-    private DcMotor leftDrive = null;
-    private DcMotor rightDrive = null;
+
 
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        leftDrive  = hardwareMap.get(DcMotor.class, "left_drive");
-        rightDrive = hardwareMap.get(DcMotor.class, "right_drive");
+        servo = hardwareMap.get(Servo.class, "servo");
 
-        leftDrive.setDirection(DcMotor.Direction.FORWARD);
-        rightDrive.setDirection(DcMotor.Direction.REVERSE);
+        servo.setDirection(Servo.Direction.REVERSE);
 
         waitForStart();
         runtime.reset();
@@ -63,45 +61,20 @@ public class Motors extends LinearOpMode {
 
             ///////// All your code goes here!///////////
 
-            leftDrive.setPower(gamepad1.left_stick_y);
-            rightDrive.setPower(gamepad1.right_stick_y);
+
+
 
             ////////////////////////////////////////////
 
-    /*
+
             // Robot Simulator - don't touch!
 
-            double leftPower = leftDrive.getPower();
-            double rightPower = rightDrive.getPower();
-            double distance;
-            double rotation;
-            double time;
-            double elapsed;
-            double absPower;
 
-            time = runtime.time();
-            while (leftPower > 0 || rightPower > 0) {
-                leftPower = leftDrive.getPower();
-                rightPower = rightDrive.getPower
-                elapsed = runtime.time() - time;
-                absPower = leftPower - rightPower;
-                if (absPower == 0) {
-                    distance = rightPower * (elapsed / 0.4) * 4 * 3.14;
-                    telemetry.addData("Moving", Double.toString(distance) + " inches");
-                } else {
-                    rotation = absPower * (elapsed / 0.4) * 4 * 3.14 * 12 * 3.14 / 90;
-                    telemetry.addData("Turning", Double.toString(rotation) + " inches");
-                }
-            }
-            */
-            double leftPower = leftDrive.getPower();
-            double rightPower = rightDrive.getPower();
+            double servoPower = servo.getPosition();
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
+            telemetry.addData("Servos", "Position: " + Double.toString(servoPower));
             telemetry.update();
-
         }
-
     }
 }

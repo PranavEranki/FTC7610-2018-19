@@ -37,7 +37,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 @Autonomous(name="Encoders", group="EncodersChallenge")
-public class Encoders extends LinearOpMode {
+public class EncoderBasics extends LinearOpMode {
 
     private ElapsedTime     runtime = new ElapsedTime();
     private DcMotor leftDrive = null;
@@ -55,9 +55,13 @@ public class Encoders extends LinearOpMode {
         telemetry.addData("Status", "Resetting Encoders");
         telemetry.update();
 
+        //setting encoders to stop and reset with encoder mode
+        //this basically resets the encoders for both motors
         leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        //setting encoder to run using encoder
+        //basically allows us to use the motors
         leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
@@ -67,22 +71,14 @@ public class Encoders extends LinearOpMode {
         telemetry.update();
 
         waitForStart();
-
-        ///////// All your code goes here!///////////
-
-
-
-
-
-        ////////////////////////////////////////////
-
+        //Here, if desired, before the telemetry below, you can add some code using
+        // the encoders
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }
 
     // Encoder Function - don't touch!
-
     public void encoderDrive(double speed,
                              double leftInches, double rightInches,
                              double timeoutS) {
@@ -121,5 +117,3 @@ public class Encoders extends LinearOpMode {
         }
     }
 }
-
-//Varun Test

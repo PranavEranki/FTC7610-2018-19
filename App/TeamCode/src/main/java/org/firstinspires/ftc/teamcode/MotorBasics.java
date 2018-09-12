@@ -36,35 +36,57 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-//update check 2
+/**
+ * Code purpose:
+ * To serve as a demo for how to use the basics of motors. Goes over motor initialization, directions,
+ * and how to set their power / get their power and print to telemetry.
+ *
+ * Changes:
+ * Changed some telemetry values and removed a couple statements using this.time which gave errors.
+ * Also renamed the file from 'Motor' to MotorBasics
+ *
+ * Functional:
+ * The code works without errors as of 9/10/18
+ *
+ * Author:
+ * Pranav Eranki on 9/10/2018
+ */
 
-@TeleOp(name="Telemetry", group="TelemetryPractice")
-public class Telemetry extends LinearOpMode {
+@TeleOp(name="MotorsBasics", group="MotorChallenge")
+public class MotorBasics extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
+
+    private DcMotor leftDrive = null;
+    private DcMotor rightDrive = null;
 
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
+        leftDrive  = hardwareMap.get(DcMotor.class, "left_drive");
+        rightDrive = hardwareMap.get(DcMotor.class, "right_drive");
+
+        leftDrive.setDirection(DcMotor.Direction.FORWARD);
+        rightDrive.setDirection(DcMotor.Direction.REVERSE);
+
         waitForStart();
         runtime.reset();
 
         while (opModeIsActive()) {
 
-            ///////// All your code goes here!///////////
+            leftDrive.setPower(gamepad1.left_stick_y);
+            rightDrive.setPower(gamepad1.right_stick_y);
 
-
-
-
-
-            ////////////////////////////////////////////
-
+            double leftPower = leftDrive.getPower();
+            double rightPower = rightDrive.getPower();
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
+            telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
             telemetry.update();
 
         }
+
     }
 }
