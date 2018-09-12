@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.robotcontroller.external.samples;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -48,10 +48,11 @@ public class BasicOpMode_Linear extends LinearOpMode {
 
     Declare below
      */
+    int  LeftDrive, RightDrive;
 
     /*
     So, here we need to declare some variables for working with encoders
-
+initialize a variable
     Variable 1 - Counts per motor revolution - hint - in the 1400s
     Variable 2 - Driver Gear Reduction - hint - sin(90)
     Variable 3 - Wheel Diameter Inches - hint - 3.6
@@ -62,6 +63,9 @@ public class BasicOpMode_Linear extends LinearOpMode {
 
     Declare all these values below
      */
+    int CountsRevo = 1440;
+    double WheelDiameter = 3.6;
+
 
     @Override
     public void runOpMode() {
