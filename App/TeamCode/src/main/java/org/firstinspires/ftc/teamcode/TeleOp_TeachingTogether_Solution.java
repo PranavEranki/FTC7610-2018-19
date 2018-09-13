@@ -18,7 +18,7 @@ public class TeleOp_TeachingTogether_Solution extends LinearOpMode {
     DcMotor leftMotor;
     DcMotor rightMotor;
 
-    static final double     COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
+    static final double     COUNTS_PER_MOTOR_REV    =1440 ;    // eg: TETRIX Motor Encoder
     static final double     DRIVE_GEAR_REDUCTION    = 1 ;     // This is < 1.0 if geared UP
     static final double     WHEEL_DIAMETER_INCHES   = 3.6 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
@@ -31,7 +31,6 @@ public class TeleOp_TeachingTogether_Solution extends LinearOpMode {
 
         leftMotor = hardwareMap.dcMotor.get("leftMotor");
         rightMotor = hardwareMap.dcMotor.get("rightMotor");
-
         waitForStart();
         runtime.reset();
 
@@ -63,8 +62,8 @@ public class TeleOp_TeachingTogether_Solution extends LinearOpMode {
             rightMotor.setPower(0.5);
 
             while (leftMotor.isBusy() && rightMotor.isBusy()) {
-                telemetry.addData("Left Ticks Left", "Left Ticks Left: " + leftMotor.getTargetPosition());
-                telemetry.addData("Right Ticks Left", "Right Ticks Left: " + rightMotor.getTargetPosition());
+                telemetry.addData("Left Ticks Left", "" + leftMotor.getTargetPosition());
+                telemetry.addData("Right Ticks Left", "" + rightMotor.getTargetPosition());
                 telemetry.update();
             }
 
