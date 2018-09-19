@@ -1,8 +1,7 @@
-package org.firstinspires.ftc.teamcode.Sensors;
+package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Sensors;
 
 import android.graphics.Bitmap;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.vuforia.Image;
 import com.vuforia.PIXEL_FORMAT;

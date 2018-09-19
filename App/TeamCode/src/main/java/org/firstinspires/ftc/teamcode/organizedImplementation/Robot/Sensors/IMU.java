@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Sensors;
+package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Sensors;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;

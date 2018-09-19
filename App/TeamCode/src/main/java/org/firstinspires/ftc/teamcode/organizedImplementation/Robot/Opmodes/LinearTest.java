@@ -1,17 +1,16 @@
-package org.firstinspires.ftc.teamcode.Opmodes;
+package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.Sensors.IMU;
-import org.firstinspires.ftc.teamcode.Sensors.OpenCV;
-import org.firstinspires.ftc.teamcode.Sensors.RangeSensor;
-import org.firstinspires.ftc.teamcode.Sensors.Vuforia;
-import org.opencv.core.Mat;
+import org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Sensors.IMU;
+import org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Sensors.OpenCV;
+import org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Sensors.RangeSensor;
+import org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Sensors.Vuforia;
 
-@TeleOp(name = "Linear Test Latest", group = "Linear Opmode")
+@TeleOp(name = "Organized - Linear OpMode", group = "Linear Opmode")
 public class LinearTest extends LinearOpMode {
 
 
@@ -73,7 +72,8 @@ public class LinearTest extends LinearOpMode {
             telemetry.update();
 
 
-            // Driving
+            // Driving method 1 - goes left or right based on stick, have to hold both up straight to go straight
+            /*
             if (gamepad1.right_stick_y < 0) {
                 if (rightPower < 0) rightPower = limitIncrement(rightPower, decelerationSpeed, 0);
                 else                rightPower = limitIncrement(rightPower, accelerationSpeed, driveSpeed);
@@ -95,9 +95,14 @@ public class LinearTest extends LinearOpMode {
                 if (leftPower < 0) leftPower = limitIncrement(leftPower, decelerationSpeed, 0);
                 else               leftPower = limitDecrement(leftPower, decelerationSpeed, 0);
             }
+            */
 
+
+            /*
             leftMotor.setPower(-0.5 * gamepad1.left_stick_y);
-            rightMotor.setPower(-0.5 * gamepad1.right_stick_y);
+            rightMotor.setPower(-0.5 * gamepad1.right_stick_y); */
+            leftMotor.setPower(-0.5 * leftPower);
+            rightMotor.setPower(-0.5 * rightPower);
 
         }
 
@@ -122,5 +127,5 @@ public class LinearTest extends LinearOpMode {
             return initial;
         }
     }
-    
+
 }
