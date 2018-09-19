@@ -29,6 +29,11 @@ public class Ryan_TeleOp extends LinearOpMode {
         rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         leftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
+        /*
+        leftMotor.setPower(gamepad1.left_stick_y);
+        rightMotor.setPower(gamepad1.right_stick_y);
+        */
+
         //this is hard code, switch to other method that is not hard code
         while(opModeIsActive()){
             if(gamepad1.left_stick_y < 0){
