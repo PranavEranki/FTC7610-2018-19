@@ -63,7 +63,7 @@ public class Bot {
     public void init(HardwareMap ahwMap) {
         hwMap = ahwMap;
         leftFrontDrive = hwMap.get(DcMotor.class, "left_motor");
-        rightFrontDrive = hwMap.get(DcMotor.class, "left_motor");
+        rightFrontDrive = hwMap.get(DcMotor.class, "right_motor");
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
