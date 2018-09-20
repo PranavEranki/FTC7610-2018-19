@@ -9,7 +9,6 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp (name = "Ryan TeleOp", group = "TeleOp")
-@Disabled
 
 public class Ryan_TeleOp extends LinearOpMode {
 

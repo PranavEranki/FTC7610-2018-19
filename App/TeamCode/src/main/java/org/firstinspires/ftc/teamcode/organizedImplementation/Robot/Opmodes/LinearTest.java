@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Sensors.Open
 import org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Sensors.RangeSensor;
 import org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Sensors.Vuforia;
 
-@TeleOp(name = "Organized - Linear OpMode", group = "Linear Opmode")
+@TeleOp(name = "Organized - OpMode", group = "Linear Opmode")
 public class LinearTest extends LinearOpMode {
 
 
@@ -36,7 +36,7 @@ public class LinearTest extends LinearOpMode {
         rightMotor = hardwareMap.dcMotor.get("right_motor");
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
 
-
+        /*
         //SENSOR STUFF
         IMU imu = new IMU("imu");
         telemetry.addLine("IMU initialized.");
@@ -52,28 +52,28 @@ public class LinearTest extends LinearOpMode {
 
         vuforia.activate();
         telemetry.update();
-
+        */
         //ONCE STARTED
         waitForStart();
         telemetry.clear();
         runtime.reset();
 
         while (opModeIsActive()) {
-            vuforia.getVuMark();
-            telemetry.addData("Name", vuforia.getVuMarkName()); //Working
-            vuforia.findRobot(telemetry);
-            telemetry.addData("X", vuforia.getDistanceX());
-            telemetry.addData("Y", vuforia.getDistanceY());
-            telemetry.addData("Z", vuforia.getDistanceZ());
-            telemetry.addData("VUFORIA Head", vuforia.getHeading());
-            telemetry.addData("IMU head", imu.getHeading());
+            //vuforia.getVuMark();
+            //telemetry.addData("Name", vuforia.getVuMarkName()); //Working
+            //vuforia.findRobot(telemetry);
+            //telemetry.addData("X", vuforia.getDistanceX());
+            //telemetry.addData("Y", vuforia.getDistanceY());
+            //telemetry.addData("Z", vuforia.getDistanceZ());
+            //telemetry.addData("VUFORIA Head", vuforia.getHeading());
+            //telemetry.addData("IMU head", imu.getHeading());
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
 
 
             // Driving method 1 - goes left or right based on stick, have to hold both up straight to go straight
-            /*
+
             if (gamepad1.right_stick_y < 0) {
                 if (rightPower < 0) rightPower = limitIncrement(rightPower, decelerationSpeed, 0);
                 else                rightPower = limitIncrement(rightPower, accelerationSpeed, driveSpeed);
@@ -95,7 +95,7 @@ public class LinearTest extends LinearOpMode {
                 if (leftPower < 0) leftPower = limitIncrement(leftPower, decelerationSpeed, 0);
                 else               leftPower = limitDecrement(leftPower, decelerationSpeed, 0);
             }
-            */
+
 
 
             /*

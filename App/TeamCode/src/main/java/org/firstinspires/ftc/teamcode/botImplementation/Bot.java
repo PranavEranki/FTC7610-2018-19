@@ -43,10 +43,8 @@ public class Bot {
     private final static double AUTO_TURN_SPEED = 0.6;
     private final static double POWER_DAMPEN = .1;
 
-    private DcMotor leftBackDrive = null;
     private DcMotor leftFrontDrive = null;
     private DcMotor rightFrontDrive = null;
-    private DcMotor rightBackDrive = null;
 
     private LinearOpMode opMode = null;
 
@@ -64,11 +62,8 @@ public class Bot {
 
     public void init(HardwareMap ahwMap) {
         hwMap = ahwMap;
-
-        leftBackDrive = hwMap.get(DcMotor.class, "backLeft");
-        leftFrontDrive = hwMap.get(DcMotor.class, "frontLeft");
-        rightBackDrive = hwMap.get(DcMotor.class, "backRight");
-        rightFrontDrive = hwMap.get(DcMotor.class, "frontRight");
+        leftFrontDrive = hwMap.get(DcMotor.class, "left_motor");
+        rightFrontDrive = hwMap.get(DcMotor.class, "left_motor");
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
@@ -89,16 +84,12 @@ public class Bot {
 
     //Sets the power of both sides of the bot
     public void setPower(double leftPower, double rightPower) {
-        leftBackDrive.setPower(leftPower);
         leftFrontDrive.setPower(leftPower);
-        rightBackDrive.setPower(rightPower);
         rightFrontDrive.setPower(rightPower);
     }
 
     public void setBehavior(DcMotor.ZeroPowerBehavior behavior){
-        leftBackDrive.setZeroPowerBehavior(behavior);
         leftFrontDrive.setZeroPowerBehavior(behavior);
-        rightBackDrive.setZeroPowerBehavior(behavior);
         rightFrontDrive.setZeroPowerBehavior(behavior);
     }
 
@@ -108,12 +99,10 @@ public class Bot {
     }
 
     public void setLeftDirection(DcMotor.Direction direction) {
-        leftBackDrive.setDirection(direction);
         leftFrontDrive.setDirection(direction);
     }
 
     public void setRightDirection(DcMotor.Direction direction) {
-        rightBackDrive.setDirection(direction);
         rightFrontDrive.setDirection(direction);
     }
 

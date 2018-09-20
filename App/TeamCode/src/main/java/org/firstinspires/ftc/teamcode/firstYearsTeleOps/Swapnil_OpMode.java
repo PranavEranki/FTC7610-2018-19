@@ -11,18 +11,67 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @TeleOp(name="Swapnil Tele-Op", group="Linear Opmode")
 public class Swapnil_OpMode extends LinearOpMode {
 
-    private DcMotor leftmotor;
+    ElapsedTime runtime = new ElapsedTime();
+    private DcMotor leftMotor;
+    private DcMotor rightMotor;
 
-    public DcMotor getLeftmotor() {
-        return leftmotor;
+    double power = 0.5;
+
+
+    // move forward at power of 0.5 for 5 seconds
+    @Override
+    public void runOpMode() {
+
+        telemetry.addData("Status", "Initialized");
+
+        leftMotor = hardwareMap.dcMotor.get("left_motor");
+        rightMotor = hardwareMap.dcMotor.get("right_motor");
+
+        waitForStart();
+        runtime.reset();
+
+        rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        leftMotor.setPower(gamepad1.left_stick_y);
+        rightMotor.setPower(gamepad1.right_stick_y);
+
+        // wait 5 seconds before executing next line of code
+        // (robot continues moving)
+        sleep(5000);
+
+        leftMotor.setPower(0);
+        rightMotor.setPower(0);
+
     }
 
-    DcMotor right_motor = hardwareMap.dcMotor.get("right_motor");
-    DcMotor left_motor = hardwareMap.dcMotor.get("left_motor");
 
-    public void runOpMode(){
-        //telemetry.data();
+    /*
+    // moves based on the gamepad
+    @Override
+    public void runOpMode() {
+
+        telemetry.addData("Status", "Initialized");
+
+        leftMotor = hardwareMap.dcMotor.get("left_motor");
+        rightMotor = hardwareMap.dcMotor.get("right_motor");
+
+        waitForStart();
+        runtime.reset();
+
+        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        while (opModeIsActive()) {
+
+            telemetry.addData("Status", "Runtime: " + runtime.toString());
+            telemetry.update();
+
+            leftMotor.setPower(-gamepad1.left_stick_y);
+            rightMotor.setPower(-gamepad1.right_stick_y);
+
+        }
+
     }
+    */
 
 }
 

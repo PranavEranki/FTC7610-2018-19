@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.Range;
 /**
  * Created by Robotics on 8/29/2018.
  */
-@TeleOp(name= "Bot - Teleop Basic", group="Bot")
+@TeleOp(name= "Bot - Teleop", group="Bot")
 //@Disabled
 public class
 Teleop extends LinearOpMode {
