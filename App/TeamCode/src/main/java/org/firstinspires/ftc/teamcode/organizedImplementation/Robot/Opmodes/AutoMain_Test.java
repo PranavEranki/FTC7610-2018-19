@@ -29,7 +29,7 @@ public class AutoMain_Test extends LinearOpMode {
         waitTime = 0;
 
         motorFrontLeft = hardwareMap.dcMotor.get("left_motor");
-        motorFrontRight = hardwareMap.dcMotor.get("left_motor");
+        motorFrontRight = hardwareMap.dcMotor.get("right_motor");
 
         motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
 
