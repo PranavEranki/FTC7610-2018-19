@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp (name = "Ryan TeleOp", group = "TeleOp")
-
+//@Disabled
 /*
 
 
@@ -30,7 +30,7 @@ public class Ryan_TeleOp extends LinearOpMode {
     //servo variables
     private final int MIN = 0;
     private final int MAX = 1;
-    private final double INCREMENT = 0.01;
+    private final double INCREMENT = 0.05;
     private double left_Servo_Placement = (MIN + MAX) / 2;
     private double right_Servo_Placement = (MIN + MAX) / 2;
     private final double SERVO_MARGIN = 0.05;
@@ -40,11 +40,14 @@ public class Ryan_TeleOp extends LinearOpMode {
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initializing...");
-        telemetry.addData("Servo: ", "UP = OPEN, DOWN = CLOSE");
+        telemetry.addData("Servo: ", "X = leftClose, Y = leftOpen, A = rightClose, B = rightOpen");
         telemetry.update();
 
         leftMotor = hardwareMap.dcMotor.get("left_motor");
         rightMotor = hardwareMap.dcMotor.get("right_motor");
+
+        leftServo = hardwareMap.servo.get("left_servo");
+        rightServo = hardwareMap.servo.get("right_servo");
 
         rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         leftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -52,10 +55,14 @@ public class Ryan_TeleOp extends LinearOpMode {
         leftServo.setPosition(left_Servo_Placement);
         rightServo.setPosition(right_Servo_Placement);
 
+        waitForStart();
+        runtime.reset();
 
         while(opModeIsActive()) {
             leftMotor.setPower(gamepad1.left_stick_y);
             rightMotor.setPower(gamepad1.right_stick_y);
+
+            //bumper(top), trigger(bottom)
 
             if(gamepad1.y) {
                 leftOpen();
@@ -68,6 +75,10 @@ public class Ryan_TeleOp extends LinearOpMode {
             } else if(gamepad1.a){
                 rightClose();
             }
+
+            leftServo.setPosition(left_Servo_Placement);
+            rightServo.setPosition(right_Servo_Placement);
+
 
         }
 
