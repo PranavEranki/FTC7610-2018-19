@@ -48,7 +48,8 @@ public class Ryan_TeleOp extends LinearOpMode {
 
         leftServo = hardwareMap.servo.get("left_servo");
         rightServo = hardwareMap.servo.get("right_servo");
-
+        telemetry.addData("Mapped", "mapping complete");
+        telemetry.update();
         rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         leftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
@@ -57,7 +58,8 @@ public class Ryan_TeleOp extends LinearOpMode {
 
         waitForStart();
         runtime.reset();
-
+        telemetry.addData("starting op mode", "true");
+        telemetry.update();
         while(opModeIsActive()) {
             leftMotor.setPower(gamepad1.left_stick_y);
             rightMotor.setPower(gamepad1.right_stick_y);
