@@ -23,8 +23,8 @@ public class Varun_TeleOp extends LinearOpMode {
         telemetry.addData("Status", "Initialize : ");
         telemetry.update();
 
-        LeftMotor = hardwareMap.dcMotor.get("Left motor");
-        RightMotor = hardwareMap.dcMotor.get("Right motor");
+        LeftMotor = hardwareMap.dcMotor.get("left_motor");
+        RightMotor = hardwareMap.dcMotor.get("right_motor");
 
         LeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         RightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
