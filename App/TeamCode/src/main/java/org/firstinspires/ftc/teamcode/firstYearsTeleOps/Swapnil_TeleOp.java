@@ -7,9 +7,14 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+/*
 
+10/1/18 - not sure what the issue is as of now? will probably test in the future
+
+ */
 @TeleOp(name="Swapnil Tele-Op", group="Linear Opmode")
-public class Swapnil_OpMode extends LinearOpMode {
+@Disabled
+public class Swapnil_TeleOp extends LinearOpMode {
 
     ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftMotor;

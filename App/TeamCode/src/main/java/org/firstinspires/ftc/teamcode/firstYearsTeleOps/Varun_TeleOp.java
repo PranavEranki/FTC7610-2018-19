@@ -8,9 +8,14 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+/*
+
+10/1/18 - Not able to initialize when run on phone
+
+ */
 
 @TeleOp (name = "Varun TeleOp", group = "TeleOp")
-
+@Disabled
 public class Varun_TeleOp extends LinearOpMode {
 
     private DcMotor RightMotor;

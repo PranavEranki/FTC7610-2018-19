@@ -10,6 +10,11 @@ import org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Sensors.Open
 import org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Sensors.RangeSensor;
 import org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Sensors.Vuforia;
 
+/*
+
+10/1/18 - Working properly
+
+ */
 @TeleOp(name = "Organized - OpMode", group = "Linear Opmode")
 public class LinearTest extends LinearOpMode {
 

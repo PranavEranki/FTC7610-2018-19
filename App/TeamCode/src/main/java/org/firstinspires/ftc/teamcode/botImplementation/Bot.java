@@ -16,6 +16,12 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
+/*
+
+10/1/18 - Looked over the code, class code is kind of flawed,
+need to probably fix
+
+ */
 //Disabled
 public class Bot {
 

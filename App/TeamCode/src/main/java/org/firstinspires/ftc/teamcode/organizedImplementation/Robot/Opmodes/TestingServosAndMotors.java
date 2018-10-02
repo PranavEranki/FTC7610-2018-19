@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.firstYearsTeleOps;
+package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -9,16 +9,22 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp (name = "Ryan TeleOp", group = "TeleOp")
-@Disabled
+@TeleOp (name = "Servos and Motors", group = "TeleOp")
+//@Disabled
 /*
 
 
 9/24/18 - During meeting, worked on & updated
 code for the servos
 
+10/1/18 - Got robot working and running, found some bugs with code
+1. motors going too fast - fixed
+2. motors going backwards - fixed
+3. left servo continuously running, right servo not moving at all - trying to fix
+
+
  */
-public class Ryan_TeleOp extends LinearOpMode {
+public class TestingServosAndMotors extends LinearOpMode {
 
     private DcMotor leftMotor;
     private DcMotor rightMotor;
@@ -129,45 +135,5 @@ public class Ryan_TeleOp extends LinearOpMode {
         rightServo.setPosition(right_Servo_Placement);
     }
 
-    /* something to consider, wrong code for our robot
-        if(gamepad1.dpad_down && left_Servo_Placement <= (MAX - SERVO_MARGIN)){
-            left_Servo_Placement += INCREMENT;
-            right_Servo_Placement -= INCREMENT;
-
-            leftServo.setPosition(left_Servo_Placement);
-            rightServo.setPosition(right_Servo_Placement);
-        }else if(gamepad1.dpad_up && right_Servo_Placement <= (MAX - SERVO_MARGIN)){
-            left_Servo_Placement -= INCREn nMENT;
-            right_Servo_Placement += INCREMENT;
-
-            leftServo.setPosition(left_Servo_Placement);
-            rightServo.setPosition(right_Servo_Placement);
-        }
-        */
-
-
-        /*this is hard code, switch to other method that is not hard code
-        while(opModeIsActive()){
-            if(gamepad1.left_stick_y < 0){
-                leftMotor.setPower(-1);
-                //rightMotor.setPower(-1);
-            }else if (gamepad1.left_stick_y > 0){
-                leftMotor.setPower(1);
-                //rightMotor.setPower(1);
-            }else{
-                leftMotor.setPower(0); //idle at 0
-            }
-            if(gamepad1.right_stick_y < 0){
-                //leftMotor.setPower(-1);
-                rightMotor.setPower(-1);
-            }else if (gamepad1.right_stick_y > 0){
-                //leftMotor.setPower(1);
-                rightMotor.setPower(1);
-            }else{
-                rightMotor.setPower(0); //idle at 0
-            }
-        }
-        //what's next
-        */
 
 }

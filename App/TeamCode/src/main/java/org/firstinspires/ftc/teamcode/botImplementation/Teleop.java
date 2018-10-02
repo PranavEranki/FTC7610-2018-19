@@ -9,10 +9,17 @@ import com.qualcomm.robotcore.util.Range;
 /**
  * Created by Robotics on 8/29/2018.
  */
+
+/*
+
+10/1/18 - Issue: robot is moving when we are not moving the stick on the gamepad,
+most likely a problem with bot class
+
+ */
+
 @TeleOp(name= "Bot - Teleop", group="Bot")
 //@Disabled
-public class
-Teleop extends LinearOpMode {
+public class Teleop extends LinearOpMode {
     private Bot robot = new Bot(this);
 
 

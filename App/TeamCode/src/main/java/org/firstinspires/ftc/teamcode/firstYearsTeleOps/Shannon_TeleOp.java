@@ -7,8 +7,13 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp (name="Shannon Tele-Op", group="Linear Opmode")
+/*
 
+10/1/18 - Emergency code for if gamepad does not work, runs by itself when played
+
+ */
+@TeleOp (name="Shannon Tele-Op", group="Linear Opmode")
+@Disabled
 public class Shannon_TeleOp extends LinearOpMode {
 
     ElapsedTime runtime = new ElapsedTime();
@@ -30,7 +35,7 @@ public class Shannon_TeleOp extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
-        rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         leftMotor.setPower(power);
         rightMotor.setPower(power);
