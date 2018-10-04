@@ -7,7 +7,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
+/*
 
+10/3/18 - Unable to initialize
+
+ */
 @Autonomous(name="Organized - Autonomous w/ Encoders", group ="red")
 
 public class AutoMain_Test extends LinearOpMode {

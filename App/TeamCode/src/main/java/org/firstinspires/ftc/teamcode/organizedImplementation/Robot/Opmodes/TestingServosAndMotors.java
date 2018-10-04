@@ -22,6 +22,10 @@ code for the servos
 2. motors going backwards - fixed
 3. left servo continuously running, right servo not moving at all - trying to fix
 
+10/3/18 - Realized that the problem wasn't in the code but it was with the servos,
+so we replaced them & now we need to come up with a good number to increment
+its position by so that it does not open or close too quickly
+
 
  */
 public class TestingServosAndMotors extends LinearOpMode {
