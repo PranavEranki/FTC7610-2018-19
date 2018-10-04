@@ -35,7 +35,7 @@ public class TestingServosAndMotors extends LinearOpMode {
     //servo variables
     private final int MIN = 0;
     private final int MAX = 1;
-    private final double INCREMENT = 0.05;
+    private final double INCREMENT = 0.01;
     private double left_Servo_Placement = (MIN + MAX) / 2;
     private double right_Servo_Placement = (MIN + MAX) / 2;
     private final double SERVO_MARGIN = 0.05;
@@ -63,8 +63,15 @@ public class TestingServosAndMotors extends LinearOpMode {
         telemetry.addData("starting op mode", "true");
         telemetry.update();
         while(opModeIsActive()) {
-            leftMotor.setPower(gamepad1.left_stick_y * 0.33);
-            rightMotor.setPower(gamepad1.right_stick_y * 0.33);
+            if (gamepad1.left_stick_y == 0 || gamepad1.right_stick_y == 0){
+                leftMotor.setPower(gamepad1.left_stick_y * 0.75);
+                rightMotor.setPower(gamepad1.right_stick_y * 0.75);
+            } else {
+                leftMotor.setPower(gamepad1.left_stick_y * 0.5);
+                rightMotor.setPower(gamepad1.right_stick_y * 0.5);
+
+            }
+
 
             //bumper(top), trigger(bottom)
 

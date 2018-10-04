@@ -28,7 +28,7 @@ public class Teleop extends LinearOpMode {
         double power = 0;
         waitForStart();
         while(opModeIsActive()) {
-            robot.setPower(Range.clip(gamepad1.left_stick_y + power, -1 , 1), Range.clip(gamepad1.right_stick_y + power, -1 , 1));
+            robot.setPower(Range.clip(gamepad1.left_stick_y + power, -0.6 , 0.6), Range.clip(gamepad1.right_stick_y + power, -0.6 , 0.6));
 
             if(gamepad1.a){
                 power += 0.01;
@@ -37,11 +37,15 @@ public class Teleop extends LinearOpMode {
             if (gamepad1.b){
                 power -= 0.01;
             }
+
+            if (gamepad1.a && gamepad1.b){
+                power = 0;
+            }
             telemetry.addData("Left Position", robot.getLeftPosition());
             telemetry.addData("Right Position", robot.getRightPosition());
             telemetry.addData("Gyro", robot.getGyroHeading());
             telemetry.addData("Pwr", power);
-            telemetry.addData("righ stick", gamepad1.right_stick_y);
+            telemetry.addData("right stick", gamepad1.right_stick_y);
             telemetry.update();
         }
     }
