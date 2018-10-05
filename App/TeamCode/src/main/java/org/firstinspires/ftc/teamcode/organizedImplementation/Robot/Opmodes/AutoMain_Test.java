@@ -11,6 +11,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 10/3/18 - Unable to initialize
 
+10/4/18 - Fixed the issue
+
  */
 @Autonomous(name="Organized - Autonomous w/ Encoders", group ="red")
 
@@ -56,19 +58,15 @@ public class AutoMain_Test extends LinearOpMode {
 
         telemetry.update();
 
+        // Wait for the game to start (driver presses PLAY)
+        waitForStart();
+
         while (opModeIsActive()) {
 
             //MOVE
-// Send telemetry message to signify robot waiting;
+            // Send telemetry message to signify robot waiting;
             telemetry.addData("Status", "Ready to run");    //
             telemetry.update();
-            motorFrontLeft = hardwareMap.dcMotor.get("motorFrontLeft"); //Left Front
-            motorFrontRight = hardwareMap.dcMotor.get("motorFrontRight"); //Right Front
-            motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
-
-
-            // Wait for the game to start (driver presses PLAY)
-            waitForStart();
 
             driveForward(1, 60*1440);
             driveBackward(1, 60*1440);
@@ -77,17 +75,6 @@ public class AutoMain_Test extends LinearOpMode {
     }
 
     public void driveToDepot(){
-
-        telemetry.addData("Status", "Ready to run");    //
-        telemetry.update();
-        motorFrontLeft = hardwareMap.dcMotor.get("motorFrontLeft"); //Left Front
-        motorFrontRight = hardwareMap.dcMotor.get("motorFrontRight"); //Right Front
-        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
-
-
-        // Wait for the game to start (driver presses PLAY)
-        waitForStart();
-
         // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
 
         // Step 1:  Drive forward for 3 seconds
@@ -144,7 +131,6 @@ public class AutoMain_Test extends LinearOpMode {
         motorFrontLeft.setPower(power);
         motorFrontRight.setPower(power);
 
-        motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 

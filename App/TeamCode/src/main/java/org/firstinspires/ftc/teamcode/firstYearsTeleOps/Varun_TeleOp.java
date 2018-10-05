@@ -31,8 +31,10 @@ public class Varun_TeleOp extends LinearOpMode {
         LeftMotor = hardwareMap.dcMotor.get("left_motor");
         RightMotor = hardwareMap.dcMotor.get("right_motor");
 
-        LeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        RightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        LeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        RightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        waitForStart();
 
         while(opModeIsActive()) {
             if (gamepad1.left_stick_y < 0) {
