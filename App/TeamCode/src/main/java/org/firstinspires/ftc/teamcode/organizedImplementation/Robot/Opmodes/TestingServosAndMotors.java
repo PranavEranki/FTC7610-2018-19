@@ -71,8 +71,8 @@ public class TestingServosAndMotors extends LinearOpMode {
                 leftMotor.setPower(gamepad1.left_stick_y * 0.75);
                 rightMotor.setPower(gamepad1.right_stick_y * 0.75);
             } else {
-                leftMotor.setPower(gamepad1.left_stick_y * 0.5);
-                rightMotor.setPower(gamepad1.right_stick_y * 0.5);
+                leftMotor.setPower(gamepad1.left_stick_y * 0.62);
+                rightMotor.setPower(gamepad1.right_stick_y * 0.62);
 
             }
 
