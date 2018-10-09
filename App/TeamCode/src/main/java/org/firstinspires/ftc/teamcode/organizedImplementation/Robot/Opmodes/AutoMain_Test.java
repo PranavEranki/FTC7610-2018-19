@@ -68,9 +68,13 @@ public class AutoMain_Test extends LinearOpMode {
             telemetry.addData("Status", "Ready to run");    //
             telemetry.update();
 
-            driveForward(1, 60*1440);
-            driveBackward(1, 60*1440);
-            driveToDepot();
+            driveForward(1, 1000*1440);
+            telemetry.addData("Forward", "Done");
+            telemetry.update();
+            driveBackward(1, 1000*1440);
+            telemetry.addData("Backward", "Done");
+            telemetry.update();
+            //driveToDepot();
         }
     }
 
@@ -97,10 +101,11 @@ public class AutoMain_Test extends LinearOpMode {
         }
         motorFrontRight.setPower(0);
         motorFrontLeft.setPower(0);
-
+        driveForward(0.5, 30*1440);
         motorFrontRight.setPower(.5);
         motorFrontLeft.setPower(-.5);
         runtime.reset();
+        /*
         while (opModeIsActive() && (runtime.seconds() < 1.5)) {
             telemetry.addData("Path", "Turn", runtime.seconds());
             telemetry.update();
@@ -120,7 +125,7 @@ public class AutoMain_Test extends LinearOpMode {
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
-        sleep(1000);
+        sleep(1000); */
     }
 
     public void driveForward(double power, int distance) {
@@ -128,8 +133,6 @@ public class AutoMain_Test extends LinearOpMode {
         motorFrontRight.setTargetPosition(distance);
         motorFrontLeft.setTargetPosition(distance);
 
-        motorFrontLeft.setPower(power);
-        motorFrontRight.setPower(power);
 
         motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
