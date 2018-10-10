@@ -43,6 +43,7 @@ public class TestingServosAndMotors extends LinearOpMode {
     private double left_Servo_Placement = (MIN + MAX) / 2;
     private double right_Servo_Placement = (MIN + MAX) / 2;
     private final double SERVO_MARGIN = 0.05;
+    private final double movement_Increment = 0.02;
 
     private ElapsedTime runtime = new ElapsedTime();
 
