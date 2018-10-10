@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp (name = "Ryan TeleOp", group = "TeleOp")
-//l@Disabled
+@Disabled
 /*
 
 
@@ -26,6 +26,8 @@ public class Ryan_TeleOp extends LinearOpMode {
     private Servo leftServo;
     private Servo rightServo;
 
+    private final double accel_move = 0.001;
+
     //servo variables
     private final int MIN = 0;
     private final int MAX = 1;
@@ -33,6 +35,8 @@ public class Ryan_TeleOp extends LinearOpMode {
     private double left_Servo_Placement = (MIN + MAX) / 2;
     private double right_Servo_Placement = (MIN + MAX) / 2;
     private final double SERVO_MARGIN = 0.05;
+
+    private int time = 0;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -57,8 +61,21 @@ public class Ryan_TeleOp extends LinearOpMode {
         telemetry.addData("starting op mode", "true");
         telemetry.update();
         while(opModeIsActive()) {
-            leftMotor.setPower(gamepad1.left_stick_y * 0.33);
-            rightMotor.setPower(gamepad1.right_stick_y * 0.33);
+            if(gamepad1.left_stick_y > 0 && gamepad1.right_stick_y > 0) {
+                if (time < 1000) {
+                    time++;
+                }
+            }
+
+
+            if(gamepad1.left_stick_y < 0 && gamepad1.right_stick_y < 0){
+                if (time > -1000) {
+                    time--;
+                }
+            }
+
+            leftMotor.setPower((time * accel_move) * 0.75);
+            rightMotor.setPower((time * accel_move) * 0.75);
 
             //bumper(top), trigger(bottom)
 
