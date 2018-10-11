@@ -62,7 +62,7 @@ public class Ryan_TeleOp extends LinearOpMode {
         telemetry.addData("starting op mode", "true");
         telemetry.update();
         while(opModeIsActive()) {
-            if (gamepad1.a && gamepad1.b && gamepad1.x && gamepad1.y) {
+            if (gamepad1.left_bumper && gamepad1.right_bumper) {
                 leftTime = 0;
                 rightTime = 0;
             }
