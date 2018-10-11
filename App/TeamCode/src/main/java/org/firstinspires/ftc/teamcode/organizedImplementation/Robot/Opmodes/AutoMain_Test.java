@@ -68,10 +68,10 @@ public class AutoMain_Test extends LinearOpMode {
             telemetry.addData("Status", "Ready to run");    //
             telemetry.update();
 
-            driveForward(1, 1000*1440);
+            driveForward(1, 100*1440);
             telemetry.addData("Forward", "Done");
             telemetry.update();
-            driveBackward(1, 1000*1440);
+            driveBackward(1, 100*1440);
             telemetry.addData("Backward", "Done");
             telemetry.update();
             //driveToDepot();
@@ -130,20 +130,20 @@ public class AutoMain_Test extends LinearOpMode {
 
     public void driveForward(double power, int distance) {
 
-        motorFrontRight.setTargetPosition(distance);
-        motorFrontLeft.setTargetPosition(distance);
+
+        motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
 
         motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        motorFrontLeft.setPower(0);
-        motorFrontRight.setPower(0);
+        motorFrontLeft.setPower(power);
+        motorFrontRight.setPower(power);
 
-        motorFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motorFrontRight.setTargetPosition(distance);
+        motorFrontLeft.setTargetPosition(distance);
 
-        sleep(500);
         motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sleep(500);
@@ -151,22 +151,19 @@ public class AutoMain_Test extends LinearOpMode {
 
     public void driveBackward(double power, int distance) {
 
-        motorFrontRight.setTargetPosition(-distance);
-        motorFrontLeft.setTargetPosition(-distance);
+        motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
 
         motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        motorFrontLeft.setPower(-power*.65);
-        motorFrontRight.setPower(-power *1.35);
+        motorFrontLeft.setPower(-power);
+        motorFrontRight.setPower(-power);
 
-        motorFrontLeft.setPower(0);
-        motorFrontRight.setPower(0);
+        motorFrontRight.setTargetPosition(-distance);
+        motorFrontLeft.setTargetPosition(-distance);
 
-        motorFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        sleep(500);
         motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sleep(500);
