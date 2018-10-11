@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp (name = "Ryan TeleOp", group = "TeleOp")
-@Disabled
+//@Disabled
 /*
 
 
@@ -26,7 +26,7 @@ public class Ryan_TeleOp extends LinearOpMode {
     private Servo leftServo;
     private Servo rightServo;
 
-    private final double accel_move = 0.001;
+    private final double accel_move = 0.002;
 
     //servo variables
     private final int MIN = 0;
@@ -36,7 +36,8 @@ public class Ryan_TeleOp extends LinearOpMode {
     private double right_Servo_Placement = (MIN + MAX) / 2;
     private final double SERVO_MARGIN = 0.05;
 
-    private int time = 0;
+    private int leftTime = 0;
+    private int rightTime = 0;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -61,21 +62,33 @@ public class Ryan_TeleOp extends LinearOpMode {
         telemetry.addData("starting op mode", "true");
         telemetry.update();
         while(opModeIsActive()) {
-            if(gamepad1.left_stick_y > 0 && gamepad1.right_stick_y > 0) {
-                if (time < 1000) {
-                    time++;
+            if (gamepad1.a && gamepad1.b && gamepad1.x && gamepad1.y) {
+                leftTime = 0;
+                rightTime = 0;
+            }
+            if(gamepad1.left_stick_y > 0) {
+                if (leftTime < 500) {
+                    leftTime++;
+                }
+            }
+            if(gamepad1.left_stick_y < 0) {
+                if (leftTime > -500) {
+                    leftTime--;
+                }
+            }
+            if (gamepad1.right_stick_y > 0) {
+                if (rightTime < 500) {
+                    rightTime++;
+                }
+            }
+            if(gamepad1.right_stick_y < 0){
+                if (rightTime > -500) {
+                    rightTime--;
                 }
             }
 
-
-            if(gamepad1.left_stick_y < 0 && gamepad1.right_stick_y < 0){
-                if (time > -1000) {
-                    time--;
-                }
-            }
-
-            leftMotor.setPower((time * accel_move) * 0.75);
-            rightMotor.setPower((time * accel_move) * 0.75);
+            leftMotor.setPower((leftTime * accel_move) * 0.75);
+            rightMotor.setPower((rightTime * accel_move) * 0.75);
 
             //bumper(top), trigger(bottom)
 
