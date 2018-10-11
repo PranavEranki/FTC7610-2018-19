@@ -83,7 +83,7 @@ public class LinearTest extends LinearOpMode {
                 if (rightPower < 0) rightPower = limitIncrement(rightPower, decelerationSpeed, 0);
                 else                rightPower = limitIncrement(rightPower, accelerationSpeed, driveSpeed);
             } else if (gamepad1.right_stick_y > 0) {
-                if (rightPower < 0) rightPower = limitDecrement(rightPower, accelerationSpeed, driveSpeed);
+                if (rightPower < 0) rightPower = limitDecrement(rightPower, accelerationSpeed, -driveSpeed);
                 else                rightPower = limitDecrement(rightPower, decelerationSpeed, 0);
             } else {
                 if (rightPower < 0) rightPower = limitIncrement(rightPower, decelerationSpeed, 0);
@@ -94,7 +94,7 @@ public class LinearTest extends LinearOpMode {
                 if (leftPower < 0) leftPower = limitIncrement(leftPower, decelerationSpeed, 0);
                 else               leftPower = limitIncrement(leftPower, accelerationSpeed, driveSpeed);
             } else if (gamepad1.left_stick_y > 0) {
-                if (leftPower < 0) leftPower = limitDecrement(leftPower, accelerationSpeed, driveSpeed);
+                if (leftPower < 0) leftPower = limitDecrement(leftPower, accelerationSpeed, -driveSpeed);
                 else               leftPower = limitDecrement(leftPower, decelerationSpeed, 0);
             } else {
                 if (leftPower < 0) leftPower = limitIncrement(leftPower, decelerationSpeed, 0);
