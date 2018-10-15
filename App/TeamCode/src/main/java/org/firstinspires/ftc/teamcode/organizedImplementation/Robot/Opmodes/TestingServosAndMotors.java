@@ -51,6 +51,8 @@ public class TestingServosAndMotors extends LinearOpMode {
     private double right_Servo_Placement = (MIN + MAX) / 2;
     private final double SERVO_MARGIN = 0.05;
 
+    private boolean accelMode = true;
+
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
@@ -74,32 +76,39 @@ public class TestingServosAndMotors extends LinearOpMode {
         telemetry.addData("starting op mode", "true");
         telemetry.update();
         while(opModeIsActive()) {
-
-            // stops moving when either bumper is pressed
-            if (gamepad1.left_bumper || gamepad1.right_bumper) {
-                leftPower = 0;
-                rightPower = 0;
+            if (gamepad1.right_bumper) {
+                accelMode = !accelMode;
             }
+            if (accelMode) {
+                // stops moving when either bumper is pressed
+                if (gamepad1.left_bumper) {
+                    leftPower = 0;
+                    rightPower = 0;
+                }
 
-            if (gamepad1.left_stick_y > 0) {
-                if (leftPower < 0) leftPower = limitIncrement(leftPower, DECEL, 0);
-                else               leftPower = limitIncrement(leftPower, ACCEL, 1);
-            } else if (gamepad1.left_stick_y < 0){
-                if (leftPower > 0) leftPower = limitDecrement(leftPower, DECEL, 0);
-                else               leftPower = limitDecrement(leftPower, ACCEL, -1);
+                if (gamepad1.left_stick_y > 0) {
+                    if (leftPower < 0) leftPower = limitIncrement(leftPower, DECEL, 0);
+                    else leftPower = limitIncrement(leftPower, ACCEL, 1);
+                } else if (gamepad1.left_stick_y < 0) {
+                    if (leftPower > 0) leftPower = limitDecrement(leftPower, DECEL, 0);
+                    else leftPower = limitDecrement(leftPower, ACCEL, -1);
+                }
+
+                if (gamepad1.right_stick_y > 0) {
+                    if (rightPower < 0) rightPower = limitIncrement(rightPower, DECEL, 0);
+                    else rightPower = limitIncrement(rightPower, ACCEL, 1);
+                } else if (gamepad1.right_stick_y < 0) {
+                    if (rightPower > 0) rightPower = limitDecrement(rightPower, DECEL, 0);
+                    else rightPower = limitDecrement(rightPower, ACCEL, -1);
+                }
+
+
+                leftMotor.setPower(leftPower * 0.75);
+                rightMotor.setPower(rightPower * 0.75);
+            } else {
+                leftMotor.setPower(gamepad1.left_stick_y * 0.75);
+                rightMotor.setPower(gamepad1.right_stick_y * 0.75);
             }
-
-            if (gamepad1.right_stick_y > 0) {
-                if (rightPower < 0) rightPower = limitIncrement(rightPower, DECEL, 0);
-                else                rightPower = limitIncrement(rightPower, ACCEL, 1);
-            } else if (gamepad1.right_stick_y < 0){
-                if (rightPower > 0) rightPower = limitDecrement(rightPower, DECEL, 0);
-                else                rightPower = limitDecrement(rightPower, ACCEL, -1);
-            }
-
-
-            leftMotor.setPower(leftPower * 0.75);
-            rightMotor.setPower(rightPower * 0.75);
 
 
             //bumper(top), trigger(bottom)
