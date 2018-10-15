@@ -61,21 +61,26 @@ public class AutoMain_Test extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        while (opModeIsActive()) {
+        //while (opModeIsActive()) {
 
             //MOVE
             // Send telemetry message to signify robot waiting;
             telemetry.addData("Status", "Ready to run");    //
             telemetry.update();
 
-            driveForward(1, 100*1440);
+            driveForward(0.3, 1000*1440);
             telemetry.addData("Forward", "Done");
             telemetry.update();
-            driveBackward(1, 100*1440);
+            driveBackward(0.3, 1000*1440);
             telemetry.addData("Backward", "Done");
             telemetry.update();
             //driveToDepot();
-        }
+            motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            //
+        // break;
+
+        //}
     }
 
     public void driveToDepot(){
@@ -110,7 +115,7 @@ public class AutoMain_Test extends LinearOpMode {
             telemetry.addData("Path", "Turn", runtime.seconds());
             telemetry.update();
         }
-        motorFrontRight.setPower(0);
+        motorFrontRight.setPower(0);[0
         motorFrontLeft.setPower(0.0);
 
         motorFrontRight.setPower(.75);
@@ -144,8 +149,8 @@ public class AutoMain_Test extends LinearOpMode {
         motorFrontRight.setTargetPosition(distance);
         motorFrontLeft.setTargetPosition(distance);
 
-        motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sleep(500);
     }
 
@@ -164,8 +169,6 @@ public class AutoMain_Test extends LinearOpMode {
         motorFrontRight.setTargetPosition(-distance);
         motorFrontLeft.setTargetPosition(-distance);
 
-        motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sleep(500);
     }
 
@@ -188,10 +191,10 @@ public class AutoMain_Test extends LinearOpMode {
         motorFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        sleep(500);
+
         motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        sleep(500);
+        sleep(5000);
     }
 
     public void pointTurnLeft(double power, int distance) {
