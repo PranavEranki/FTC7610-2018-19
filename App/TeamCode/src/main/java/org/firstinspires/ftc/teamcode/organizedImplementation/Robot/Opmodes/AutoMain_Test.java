@@ -150,12 +150,12 @@ public class AutoMain_Test extends LinearOpMode {
 
         motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
+        /*
         motorFrontLeft.setPower(power);
         motorFrontRight.setPower(power);
 
         motorFrontRight.setTargetPosition(distance);
-        motorFrontLeft.setTargetPosition(distance);
+        motorFrontLeft.setTargetPosition(distance); */
 
 //        motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 //        motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -170,12 +170,12 @@ public class AutoMain_Test extends LinearOpMode {
 
         motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
+        /*
         motorFrontLeft.setPower(-power);
         motorFrontRight.setPower(-power);
 
         motorFrontRight.setTargetPosition(-distance);
-        motorFrontLeft.setTargetPosition(-distance);
+        motorFrontLeft.setTargetPosition(-distance); */
 
         sleep(500);
     }
