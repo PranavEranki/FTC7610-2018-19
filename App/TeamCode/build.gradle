@@ -15,4 +15,6 @@
 apply from: '../build.common.gradle'
 dependencies {
     implementation project(path: ':openCV')
+    implementation project(':openCVLibrary3')
+    implementation project(':DogeCV')
 }

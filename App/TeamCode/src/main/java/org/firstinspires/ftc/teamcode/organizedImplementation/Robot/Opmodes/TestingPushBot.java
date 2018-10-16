@@ -48,27 +48,40 @@ public class TestingPushBot extends LinearOpMode {
         rightDrive = hardwareMap.dcMotor.get("right_motor");
         rightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         runtime.reset();
-        leftDrive.setPower(FORWARD_SPEED);
-        rightDrive.setPower(FORWARD_SPEED);
-        while (opModeIsActive() && (runtime.seconds() < 5.0)) {
+        leftDrive.setPower(0.5);
+        rightDrive.setPower(0.5);
+        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
-        // Step 2:  Spin right for 1.3 seconds
-        leftDrive.setPower(TURN_SPEED);
-        rightDrive.setPower(-TURN_SPEED);
+        rightDrive.setPower(-.25);
+        leftDrive.setPower(-.25);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 0.5)) {
-            telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
+        while (opModeIsActive() && (runtime.seconds() < 1)) {
+            telemetry.addData("Path", "Backward", runtime.seconds());
             telemetry.update();
         }
 
-        // Step 3:  Drive Backwards for 1 Second
-        leftDrive.setPower(-FORWARD_SPEED);
-        rightDrive.setPower(-FORWARD_SPEED);
+        leftDrive.setPower(0.5);
+        rightDrive.setPower(0.5);
+
+        // drive forward at 0.5 power for 30 inch
+        // insert code here
+
+
+        rightDrive.setPower(.5);
+        leftDrive.setPower(-.5);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
+            telemetry.addData("Path", "Turn", runtime.seconds());
+            telemetry.update();
+        }
+
+        rightDrive.setPower(.75);
+        leftDrive.setPower(.75);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 5.0)) {
-            telemetry.addData("Path", "Leg 3: %2.5f S Elapsed", runtime.seconds());
+            telemetry.addData("Path", "Forward", runtime.seconds());
             telemetry.update();
         }
 
