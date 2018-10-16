@@ -80,6 +80,8 @@ public class TestingServosAndMotors extends LinearOpMode {
                 accelMode = !accelMode;
             }
             if (accelMode) {
+                telemetry.addData("Mode", "Accel");
+                telemetry.update();
                 // stops moving when either bumper is pressed
                 if (gamepad1.left_bumper) {
                     leftPower = 0;
@@ -106,6 +108,8 @@ public class TestingServosAndMotors extends LinearOpMode {
                 leftMotor.setPower(leftPower * 0.75);
                 rightMotor.setPower(rightPower * 0.75);
             } else {
+                telemetry.addData("Mode", "No Accel");
+                telemetry.update();
                 leftMotor.setPower(gamepad1.left_stick_y * 0.75);
                 rightMotor.setPower(gamepad1.right_stick_y * 0.75);
             }
