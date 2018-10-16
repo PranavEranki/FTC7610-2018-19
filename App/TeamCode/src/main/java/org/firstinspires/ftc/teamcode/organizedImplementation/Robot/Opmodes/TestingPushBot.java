@@ -43,7 +43,7 @@ public class TestingPushBot extends LinearOpMode {
 
         // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
 
-        // Step 1:  Drive forward for 3 seconds
+        // Drive forward for 3 seconds
         leftDrive = hardwareMap.dcMotor.get("left_motor");
         rightDrive = hardwareMap.dcMotor.get("right_motor");
         rightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -85,7 +85,7 @@ public class TestingPushBot extends LinearOpMode {
             telemetry.update();
         }
 
-        // Step 4:  Stop
+        //Stop
         leftDrive.setPower(0);
         rightDrive.setPower(0);
 
