@@ -18,6 +18,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude "lib/armeabi-v7a/libopencv_java3.so"
+    }
 }
 repositories {
     flatDir {
