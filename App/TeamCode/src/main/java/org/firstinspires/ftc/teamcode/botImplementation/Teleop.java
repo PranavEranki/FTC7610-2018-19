@@ -28,7 +28,7 @@ public class Teleop extends LinearOpMode {
         double power = 0;
         waitForStart();
         while(opModeIsActive()) {
-            robot.setPower(Range.clip(gamepad1.left_stick_y + power, -0.68 , 0.68), Range.clip(gamepad1.right_stick_y + power, -0.68 , 0.68));
+            robot.setPower(Range.clip(gamepad1.left_stick_y + power, -0.75 , 0.75), Range.clip(gamepad1.right_stick_y + power, -0.75 , 0.75));
 
             if(gamepad1.a){
                 power += 0.01;

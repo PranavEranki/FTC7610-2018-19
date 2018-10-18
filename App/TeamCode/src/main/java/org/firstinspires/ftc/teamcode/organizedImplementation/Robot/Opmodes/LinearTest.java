@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -12,10 +13,11 @@ import org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Sensors.Vufo
 
 /*
 
-10/1/18 - Working properly
+Note: this code is not working properly, acceleration already implemented in main teleop
 
  */
 @TeleOp(name = "Organized - OpMode", group = "Linear Opmode")
+@Disabled
 public class LinearTest extends LinearOpMode {
 
 

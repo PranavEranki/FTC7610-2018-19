@@ -13,6 +13,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
+/*
+
+10/17/18 - Only goes forward for 6 seconds
+
+ */
+
 @Autonomous(name= "Pushbot test", group="Autonomous")
 public class TestingPushBot extends LinearOpMode {
     /* Declare OpMode members. */

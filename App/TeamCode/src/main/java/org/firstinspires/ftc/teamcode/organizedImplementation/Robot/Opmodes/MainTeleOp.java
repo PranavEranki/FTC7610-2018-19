@@ -9,8 +9,6 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp (name = "Servos and Motors", group = "TeleOp")
-//@Disabled
 /*
 
 
@@ -28,12 +26,23 @@ its position by so that it does not open or close too quickly
 
 10/10/18 - Changed to add acceleration
 
- */
-public class TestingServosAndMotors extends LinearOpMode {
+10/17/18 - Added Core Hex Motors, tweaked some stuff (Shannon)
 
+
+ */
+@TeleOp (name = "Main TeleOp", group = "TeleOp")
+//@Disabled
+public class MainTeleOp extends LinearOpMode {
+
+    // REV Robotics 40:1 Motors
     private DcMotor leftMotor;
     private DcMotor rightMotor;
 
+    // Core Hex Motors
+    private DcMotor turningMotor;
+    private DcMotor extendingMotor; // will map when hardware finishes
+
+    // Servos
     private Servo leftServo;
     private Servo rightServo;
 
@@ -43,7 +52,9 @@ public class TestingServosAndMotors extends LinearOpMode {
     private double leftPower = 0;
     private double rightPower = 0;
 
-    //servo variables
+    private double turningMotorPower = 0;
+
+    // Servo variables
     private final int MIN = 0;
     private final int MAX = 1;
     private final double INCREMENT = 0.05;
@@ -57,36 +68,60 @@ public class TestingServosAndMotors extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+
         telemetry.addData("Status", "Initializing...");
-        telemetry.addData("Servo: ", "X = leftClose, Y = leftOpen, A = rightClose, B = rightOpen");
         telemetry.update();
 
         leftMotor = hardwareMap.dcMotor.get("left_motor");
         rightMotor = hardwareMap.dcMotor.get("right_motor");
 
+        turningMotor = hardwareMap.dcMotor.get("mech");
+        // extendingMotor = hardwareMap.dcMotor.get("extending_motor");
+
         leftServo = hardwareMap.servo.get("left_servo");
         rightServo = hardwareMap.servo.get("right_servo");
+
         telemetry.addData("Mapped", "mapping complete");
         telemetry.update();
+
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         rightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         waitForStart();
         runtime.reset();
-        telemetry.addData("starting op mode", "true");
+
+        telemetry.addData("Starting OpMode", "true");
         telemetry.update();
+
         while(opModeIsActive()) {
+
+            // Notes
+            telemetry.addData("Motors", "use left and right sticks");
+            telemetry.addData("Core Hex Motors", "use dpad up and down");
+            telemetry.addData("Servos", "X = leftClose, Y = leftOpen, A = rightClose, B = rightOpen");
+            telemetry.addData("To switch between modes", "press right bumper");
+            telemetry.addData("To stop all movement", "press left bumper");
+            telemetry.addData("Servo Placements", "Left - " + left_Servo_Placement + ", Right - " + right_Servo_Placement);
+            telemetry.addData("Motor Speed", "Left - " + leftPower + ", Right - " + rightPower);
+            telemetry.addData("Core Hex Motor Speed", turningMotorPower);
+
+            // Everything stops moving when left bumper is pressed
+            if (gamepad1.left_bumper) {
+                leftPower = 0;
+                rightPower = 0;
+                turningMotorPower = 0;
+            }
+
+            // Motors
+
+            // Changing between modes
             if (gamepad1.right_bumper) {
                 accelMode = !accelMode;
             }
+
             if (accelMode) {
-                telemetry.addData("Mode", "Accel");
+                telemetry.addData("Mode", "Acceleration");
                 telemetry.update();
-                // stops moving when either bumper is pressed
-                if (gamepad1.left_bumper) {
-                    leftPower = 0;
-                    rightPower = 0;
-                }
 
                 if (gamepad1.left_stick_y > 0) {
                     if (leftPower < 0) leftPower = limitIncrement(leftPower, DECEL, 0);
@@ -104,48 +139,44 @@ public class TestingServosAndMotors extends LinearOpMode {
                     else rightPower = limitDecrement(rightPower, ACCEL, -1);
                 }
 
-
                 leftMotor.setPower(leftPower * 0.75);
                 rightMotor.setPower(rightPower * 0.75);
             } else {
-                telemetry.addData("Mode", "No Accel");
+                telemetry.addData("Mode", "No Acceleration");
                 telemetry.update();
+
                 leftMotor.setPower(gamepad1.left_stick_y * 0.75);
                 rightMotor.setPower(gamepad1.right_stick_y * 0.75);
             }
 
+            // Core Hex Motors
+            if (gamepad1.dpad_up && turningMotorPower < 1) {
+                turningMotorPower += 0.01;
+            } else if (gamepad1.dpad_down && turningMotorPower > -1) {
+                turningMotorPower -= 0.01;
+            }
+            turningMotor.setPower(turningMotorPower * 0.75);
 
-            //bumper(top), trigger(bottom)
-
+            // Servos
             if(gamepad1.y) {
                 leftOpen();
-                servoWait();
+                servoPos();
             }
             if (gamepad1.x) {
                 leftClose();
-                servoWait();
+                servoPos();
             }
 
             if(gamepad1.b){
                 rightOpen();
-                servoWait();
+                servoPos();
             }
             if (gamepad1.a){
                 rightClose();
-                servoWait();
+                servoPos();
             }
-
-
         }
-
-        //subject to change
-        //X: left, Close
-        //Y: left, Open
-        //A: right, Close
-        //B: right, open
     }
-
-    //if servos are flipped, change one of the servo directions (names)
 
     private void leftOpen(){
         if (left_Servo_Placement >= (MAX - SERVO_MARGIN)) {
@@ -179,7 +210,7 @@ public class TestingServosAndMotors extends LinearOpMode {
         }
     }
 
-    private void servoWait() {
+    private void servoPos() {
         leftServo.setPosition(left_Servo_Placement);
         rightServo.setPosition(right_Servo_Placement);
     }
