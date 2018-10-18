@@ -52,8 +52,6 @@ public class MainTeleOp extends LinearOpMode {
     private double leftPower = 0;
     private double rightPower = 0;
 
-    private double turningMotorPower = 0;
-
     // Servo variables
     private final int MIN = 0;
     private final int MAX = 1;
@@ -96,20 +94,18 @@ public class MainTeleOp extends LinearOpMode {
         while(opModeIsActive()) {
 
             // Notes
-            telemetry.addData("Motors", "use left and right sticks");
-            telemetry.addData("Core Hex Motors", "use dpad up and down");
-            telemetry.addData("Servos", "X = leftClose, Y = leftOpen, A = rightClose, B = rightOpen");
-            telemetry.addData("To switch between modes", "press right bumper");
-            telemetry.addData("To stop all movement", "press left bumper");
+            telemetry.addData("Motors (gamepad 1)", "use left and right sticks");
+            telemetry.addData("Core Hex Motors (gamepad 2)", "use left stick");
+            telemetry.addData("Servos (gamepad 1)", "X = leftClose, Y = leftOpen, A = rightClose, B = rightOpen");
+            telemetry.addData("To switch between modes (gamepad 1)", "press right bumper");
+            telemetry.addData("To stop all movement (gamepad 1)", "press left bumper");
             telemetry.addData("Servo Placements", "Left - " + left_Servo_Placement + ", Right - " + right_Servo_Placement);
             telemetry.addData("Motor Speed", "Left - " + leftPower + ", Right - " + rightPower);
-            telemetry.addData("Core Hex Motor Speed", turningMotorPower);
 
             // Everything stops moving when left bumper is pressed
             if (gamepad1.left_bumper) {
                 leftPower = 0;
                 rightPower = 0;
-                turningMotorPower = 0;
             }
 
             // Motors
@@ -150,12 +146,7 @@ public class MainTeleOp extends LinearOpMode {
             }
 
             // Core Hex Motors
-            if (gamepad1.dpad_up && turningMotorPower < 1) {
-                turningMotorPower += 0.01;
-            } else if (gamepad1.dpad_down && turningMotorPower > -1) {
-                turningMotorPower -= 0.01;
-            }
-            turningMotor.setPower(turningMotorPower * 0.75);
+            turningMotor.setPower(gamepad2.left_stick_y * 0.5);
 
             // Servos
             if(gamepad1.y) {
