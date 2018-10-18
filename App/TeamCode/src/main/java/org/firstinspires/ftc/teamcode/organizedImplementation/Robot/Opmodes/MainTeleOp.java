@@ -102,12 +102,6 @@ public class MainTeleOp extends LinearOpMode {
             telemetry.addData("Servo Placements", "Left - " + left_Servo_Placement + ", Right - " + right_Servo_Placement);
             telemetry.addData("Motor Speed", "Left - " + leftPower + ", Right - " + rightPower);
 
-            // Everything stops moving when left bumper is pressed
-            if (gamepad1.left_bumper) {
-                leftPower = 0;
-                rightPower = 0;
-            }
-
             // Motors
 
             // Changing between modes
@@ -118,6 +112,12 @@ public class MainTeleOp extends LinearOpMode {
             if (accelMode) {
                 telemetry.addData("Mode", "Acceleration");
                 telemetry.update();
+
+                // Everything stops moving when left bumper is pressed
+                if (gamepad1.left_bumper) {
+                    leftPower = 0;
+                    rightPower = 0;
+                }
 
                 if (gamepad1.left_stick_y > 0) {
                     if (leftPower < 0) leftPower = limitIncrement(leftPower, DECEL, 0);
