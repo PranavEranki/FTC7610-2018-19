@@ -65,7 +65,7 @@ public class GyroTesting extends LinearOpMode {
     }
 
     public void runOpMode(){
-        
+
 
     }
 
