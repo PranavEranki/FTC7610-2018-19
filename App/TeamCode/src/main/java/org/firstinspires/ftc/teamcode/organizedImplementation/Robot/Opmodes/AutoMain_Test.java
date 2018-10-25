@@ -14,7 +14,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 10/4/18 - Fixed the issue
 
  */
-@Autonomous(name="Organized - Autonomous w/ Encoders", group ="red")
+@Autonomous(name="Organized - Autonomous w/ Encoders t", group ="red")
+
 
 public class AutoMain_Test extends LinearOpMode {
 
@@ -29,15 +30,15 @@ public class AutoMain_Test extends LinearOpMode {
     BNO055IMU imu;
     public Orientation angles;
 
-    static final double     COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
-    static final double     DRIVE_GEAR_REDUCTION    = 2.0 ;     // This is < 1.0 if geared UP
-    static final double     WHEEL_DIAMETER_INCHES   = 4 ;     // For figuring circumference
+    static final double     COUNTS_PER_MOTOR_REV    = 560 ;    // eg: TETRIX Motor Encoder
+    static final double     DRIVE_GEAR_REDUCTION    = 1.5 ;     // This is < 1.0 if geared UP
+    static final double     WHEEL_DIAMETER_INCHES   = 3.5 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double     DRIVE_SPEED             = 0.6;
     static final double     TURN_SPEED              = 0.5;
 
-    @Override
+    //@Override
     public void runOpMode() {
         gameState = 0;
         waitTime = 0;
@@ -73,12 +74,20 @@ public class AutoMain_Test extends LinearOpMode {
         telemetry.update();
 
         //driveForward(0.3, 1000*1440);
-        encoderDrive(0.3, 60, 60, 5);
+
         telemetry.addData("Forward", "Done");
         telemetry.update();
         //driveBackward(0.3, 1000*1440);
         telemetry.addData("Backward", "Done");
         telemetry.update();
+        encoderDrive(0.3, 5, 5, 2);
+        encoderDrive(0.5, 12, -6, 1.5);
+        encoderDrive(0.6, 5, 5, 2);
+        encoderDrive(0.5, 12, -6, 1.5);
+        encoderDrive(0.3, 5, 5, 2);
+        encoderDrive(0.5, 12, -6, 1.5);
+        encoderDrive(0.6, 5, 5, 2);
+        encoderDrive(0.5, 12, -6, 1.5);
         //driveToDepot();
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
