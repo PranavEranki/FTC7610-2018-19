@@ -14,10 +14,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 10/4/18 - Fixed the issue
 
  */
-@Autonomous(name="Organized - Autonomous w/ Encoders t", group ="red")
+@Autonomous(name="Main Autonomous", group ="Autonomous")
 
 
-public class AutoMain_Test extends LinearOpMode {
+public class MainAutonomous extends LinearOpMode {
 
     public DcMotor leftMotor;
     public DcMotor rightMotor;

@@ -73,7 +73,7 @@ public class MainTeleOp extends LinearOpMode {
         leftMotor = hardwareMap.dcMotor.get("left_motor");
         rightMotor = hardwareMap.dcMotor.get("right_motor");
 
-        turningMotor = hardwareMap.dcMotor.get("mech");
+        turningMotor = hardwareMap.dcMotor.get("turning_motor");
         // extendingMotor = hardwareMap.dcMotor.get("extending_motor");
 
         leftServo = hardwareMap.servo.get("left_servo");

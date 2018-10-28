@@ -19,7 +19,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
  */
 
-@Autonomous(name= "Pushbot test", group="Autonomous")
+@Autonomous(name= "Testing Pushbot", group="Autonomous")
 public class TestingPushBot extends LinearOpMode {
     /* Declare OpMode members. */
     HardwarePushbot robot   = new HardwarePushbot();   // Use a Pushbot's hardware
