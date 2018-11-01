@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -16,6 +17,7 @@ import java.util.Locale;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @Autonomous(name = "Testing Gyro", group = "Autonomous")
+@Disabled
 public class TestingGyro extends LinearOpMode {
 
     public BNO055IMU imu;

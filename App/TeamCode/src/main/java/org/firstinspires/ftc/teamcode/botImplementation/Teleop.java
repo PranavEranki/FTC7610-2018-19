@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.botImplementation;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -18,7 +19,7 @@ most likely a problem with bot class
  */
 
 @TeleOp(name= "Bot - Teleop", group="Bot")
-//@Disabled
+@Disabled
 public class Teleop extends LinearOpMode {
     private Bot robot = new Bot(this);
 
