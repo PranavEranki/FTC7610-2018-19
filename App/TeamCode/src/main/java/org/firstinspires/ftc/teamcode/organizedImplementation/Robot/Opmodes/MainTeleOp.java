@@ -55,10 +55,10 @@ public class MainTeleOp extends LinearOpMode {
     // Servo variables
     private final int MIN = 0;
     private final int MAX = 1;
-    private final double INCREMENT = 0.05;
-    private double left_Servo_Placement = (MIN + MAX) / 2;
-    private double right_Servo_Placement = (MIN + MAX) / 2;
-    private final double SERVO_MARGIN = 0.05;
+    private final double INCREMENT = 0.005;
+    private double left_Servo_Placement = 0;
+    private double right_Servo_Placement = 0;
+    private final double SERVO_MARGIN = 0.01;
 
     private boolean accelMode = true;
 
@@ -78,6 +78,9 @@ public class MainTeleOp extends LinearOpMode {
 
         leftServo = hardwareMap.servo.get("left_servo");
         rightServo = hardwareMap.servo.get("right_servo");
+
+        leftServo.setPosition(0);
+        rightServo.setPosition(0);
 
         telemetry.addData("Mapped", "mapping complete");
         telemetry.update();
@@ -111,7 +114,6 @@ public class MainTeleOp extends LinearOpMode {
 
             if (accelMode) {
                 telemetry.addData("Mode", "Acceleration");
-                telemetry.update();
 
                 // Everything stops moving when left bumper is pressed
                 if (gamepad1.left_bumper) {
@@ -139,7 +141,6 @@ public class MainTeleOp extends LinearOpMode {
                 rightMotor.setPower(rightPower * 0.75);
             } else {
                 telemetry.addData("Mode", "No Acceleration");
-                telemetry.update();
 
                 leftMotor.setPower(gamepad1.left_stick_y * 0.75);
                 rightMotor.setPower(gamepad1.right_stick_y * 0.75);
@@ -166,6 +167,10 @@ public class MainTeleOp extends LinearOpMode {
                 rightClose();
                 servoPos();
             }
+
+            telemetry.addData("Left Servo", left_Servo_Placement);
+            telemetry.addData("Right Servo", right_Servo_Placement);
+            telemetry.update();
         }
     }
 
