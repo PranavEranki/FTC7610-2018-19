@@ -45,7 +45,7 @@ public class AutonomousForward extends LinearOpMode {
 
         leftMotor.setPower(0.5001);
         rightMotor.setPower(0.5);
-        while (opModeIsActive() && (runtime.seconds() < 2.0)) {
+        while (opModeIsActive() && (runtime.seconds() < 1.0)) {
             telemetry.addData("Path 1 - Forward", runtime.seconds());
             telemetry.update();
         }

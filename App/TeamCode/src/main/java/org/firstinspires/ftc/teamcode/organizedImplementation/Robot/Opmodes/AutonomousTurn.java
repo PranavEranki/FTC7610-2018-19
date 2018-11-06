@@ -40,7 +40,9 @@ public class AutonomousTurn extends LinearOpMode {
 
         leftMotor.setPower(0.5);
         rightMotor.setPower(-0.5);
-        while (opModeIsActive() && (runtime.seconds() < 2.0)) {
+        //previous was 3.0, around 180 degrees
+
+        while (opModeIsActive() && (runtime.seconds() < 0.2)) {
             telemetry.addData("Path 2 - Turn Right", runtime.seconds());
             telemetry.update();
         }

@@ -85,8 +85,7 @@ public class MainTeleOp extends LinearOpMode {
         telemetry.addData("Mapped", "mapping complete");
         telemetry.update();
 
-        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
         runtime.reset();
@@ -96,14 +95,6 @@ public class MainTeleOp extends LinearOpMode {
 
         while(opModeIsActive()) {
 
-            // Notes
-            telemetry.addData("Motors (gamepad 1)", "use left and right sticks");
-            telemetry.addData("Core Hex Motors (gamepad 2)", "use left stick");
-            telemetry.addData("Servos (gamepad 1)", "X = leftClose, Y = leftOpen, A = rightClose, B = rightOpen");
-            telemetry.addData("To switch between modes (gamepad 1)", "press right bumper");
-            telemetry.addData("To stop all movement (gamepad 1)", "press left bumper");
-            telemetry.addData("Servo Placements", "Left - " + left_Servo_Placement + ", Right - " + right_Servo_Placement);
-            telemetry.addData("Motor Speed", "Left - " + leftPower + ", Right - " + rightPower);
 
             // Motors
 
@@ -114,6 +105,7 @@ public class MainTeleOp extends LinearOpMode {
 
             if (accelMode) {
                 telemetry.addData("Mode", "Acceleration");
+                addMessages();
 
                 // Everything stops moving when left bumper is pressed
                 if (gamepad1.left_bumper) {
@@ -141,6 +133,7 @@ public class MainTeleOp extends LinearOpMode {
                 rightMotor.setPower(rightPower * 0.75);
             } else {
                 telemetry.addData("Mode", "No Acceleration");
+                addMessages();
 
                 leftMotor.setPower(gamepad1.left_stick_y * 0.75);
                 rightMotor.setPower(gamepad1.right_stick_y * 0.75);
@@ -167,9 +160,6 @@ public class MainTeleOp extends LinearOpMode {
                 rightClose();
                 servoPos();
             }
-
-            telemetry.addData("Left Servo", left_Servo_Placement);
-            telemetry.addData("Right Servo", right_Servo_Placement);
             telemetry.update();
         }
     }
@@ -229,6 +219,16 @@ public class MainTeleOp extends LinearOpMode {
         else {
             return initial;
         }
+    }
+
+    private void addMessages() {
+        telemetry.addData("Motors (gamepad 1)", "use left and right sticks");
+        telemetry.addData("Core Hex Motors (gamepad 2)", "use left stick");
+        telemetry.addData("Servos (gamepad 1)", "X = leftClose, Y = leftOpen, A = rightClose, B = rightOpen");
+        telemetry.addData("To switch between modes (gamepad 1)", "press right bumper");
+        telemetry.addData("To stop all movement (gamepad 1)", "press left bumper");
+        telemetry.addData("Servo Placements", "Left - " + left_Servo_Placement + ", Right - " + right_Servo_Placement);
+        telemetry.addData("Motor Speed", "Left - " + leftPower + ", Right - " + rightPower);
     }
 
 }
