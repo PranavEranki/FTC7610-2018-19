@@ -143,20 +143,20 @@ public class MainTeleOp extends LinearOpMode {
             turningMotor.setPower(gamepad2.left_stick_y * 0.5);
 
             // Servos
-            if(gamepad1.y) {
+            if(gamepad2.y) {
                 leftOpen();
                 servoPos();
             }
-            if (gamepad1.x) {
+            if (gamepad2.x) {
                 leftClose();
                 servoPos();
             }
 
-            if(gamepad1.b){
+            if(gamepad2.b){
                 rightOpen();
                 servoPos();
             }
-            if (gamepad1.a){
+            if (gamepad2.a){
                 rightClose();
                 servoPos();
             }
