@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes;
+package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -13,9 +13,14 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
+/*
 
-@Autonomous(name= "Autonomous Turn", group="Autonomous")
-public class AutonomousTurn extends LinearOpMode {
+10/17/18 - Only goes forward for 6 seconds
+
+ */
+
+@Autonomous(name= "Autonomous Forward", group="Autonomous")
+public class AutonomousForward extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -35,15 +40,13 @@ public class AutonomousTurn extends LinearOpMode {
         rightMotor = hardwareMap.dcMotor.get("right_motor");
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        // Turn right for 2 seconds
+        // Forward for 10 seconds
         runtime.reset();
 
-        leftMotor.setPower(0.5);
-        rightMotor.setPower(-0.5);
-        //previous was 3.0, around 180 degrees
-
-        while (opModeIsActive() && (runtime.seconds() < 0.2)) {
-            telemetry.addData("Path 2 - Turn Right", runtime.seconds());
+        leftMotor.setPower(0.5001);
+        rightMotor.setPower(0.5);
+        while (opModeIsActive() && (runtime.seconds() < 1.0)) {
+            telemetry.addData("Path 1 - Forward", runtime.seconds());
             telemetry.update();
         }
 

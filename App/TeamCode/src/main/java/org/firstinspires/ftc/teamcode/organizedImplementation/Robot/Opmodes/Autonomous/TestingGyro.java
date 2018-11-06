@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes;
+package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes.Autonomous;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;

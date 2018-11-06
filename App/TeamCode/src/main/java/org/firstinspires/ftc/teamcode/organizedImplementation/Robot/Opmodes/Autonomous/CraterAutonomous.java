@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes;
+package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes.Autonomous;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -17,9 +17,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 10/31/18 - BUGGY
 
  */
-@Autonomous(name="Main Autonomous", group ="Autonomous")
+@Autonomous(name="Crater Autonomous", group ="Autonomous")
 @Disabled
-public class MainAutonomous extends LinearOpMode {
+public class CraterAutonomous extends LinearOpMode {
 
     public DcMotor leftMotor;
     public DcMotor rightMotor;

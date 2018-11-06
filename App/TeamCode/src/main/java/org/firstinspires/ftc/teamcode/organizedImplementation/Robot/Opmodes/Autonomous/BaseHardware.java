@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes;
+package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes.Autonomous;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
