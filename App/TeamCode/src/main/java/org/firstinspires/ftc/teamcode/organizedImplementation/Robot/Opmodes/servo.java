@@ -34,8 +34,6 @@ public class servo extends LinearOpMode {
         telemetry.addData("Starting OpMode", "true");
         telemetry.update();
 
-        telemetry.addData("test", "left");
-
         while(opModeIsActive()) {
             if (gamepad2.x) {
                 // Open
