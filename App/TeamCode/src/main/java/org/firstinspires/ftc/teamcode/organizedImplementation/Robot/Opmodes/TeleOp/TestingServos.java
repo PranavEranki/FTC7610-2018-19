@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes;
+package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes.TeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -9,9 +9,9 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp (name = "servo", group = "TeleOp")
+@TeleOp (name = "Testing Servos", group = "TeleOp")
 //@Disabled
-public class servo extends LinearOpMode {
+public class TestingServos extends LinearOpMode {
     private Servo leftServo;
     private Servo rightServo;
 

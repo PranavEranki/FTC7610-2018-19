@@ -18,7 +18,7 @@ code for the servos
 10/1/18 - Got robot working and running, found some bugs with code
 1. motors going too fast - fixed
 2. motors going backwards - fixed
-3. left servo continuously running, right servo not moving at all - trying to fix
+3. left TestingServos continuously running, right TestingServos not moving at all - trying to fix
 
 10/3/18 - Realized that the problem wasn't in the code but it was with the servos,
 so we replaced them & now we need to come up with a good number to increment
@@ -40,7 +40,7 @@ public class MainTeleOp extends LinearOpMode {
 
     // Core Hex Motors
     private DcMotor turningMotor;
-    private DcMotor extendingMotor; // will map when hardware finishes
+    private DcMotor extendingMotor;
 
     // Servos
     private Servo leftServo;
@@ -74,7 +74,7 @@ public class MainTeleOp extends LinearOpMode {
         rightMotor = hardwareMap.dcMotor.get("right_motor");
 
         turningMotor = hardwareMap.dcMotor.get("turning_motor");
-        // extendingMotor = hardwareMap.dcMotor.get("extending_motor");
+        extendingMotor = hardwareMap.dcMotor.get("extending_motor");
 
         leftServo = hardwareMap.servo.get("left_servo");
         rightServo = hardwareMap.servo.get("right_servo");

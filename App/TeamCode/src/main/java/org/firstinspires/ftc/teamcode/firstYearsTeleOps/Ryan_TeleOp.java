@@ -28,7 +28,7 @@ public class Ryan_TeleOp extends LinearOpMode {
 
     private final double accel_move = 0.002;
 
-    //servo variables
+    //TestingServos variables
     private final int MIN = 0;
     private final int MAX = 1;
     private final double INCREMENT = 0.05;
@@ -120,7 +120,7 @@ public class Ryan_TeleOp extends LinearOpMode {
         //B: right, open
     }
 
-    //if servos are flipped, change one of the servo directions (names)
+    //if servos are flipped, change one of the TestingServos directions (names)
 
     private void leftOpen(){
         if (left_Servo_Placement >= (MAX - SERVO_MARGIN)) {
