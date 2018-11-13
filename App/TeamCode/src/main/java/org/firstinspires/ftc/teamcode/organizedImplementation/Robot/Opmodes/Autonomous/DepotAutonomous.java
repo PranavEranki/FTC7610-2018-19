@@ -38,7 +38,7 @@ public class DepotAutonomous extends LinearOpMode{
         // go straight from start to depot
         leftMotor.setPower(speed + error);
         rightMotor.setPower(speed);
-        while(opModeIsActive() && runtime.seconds() < 0.75){
+        while(opModeIsActive() && runtime.seconds() < 0.5){
             telemetry.addData("To Depot", "true", runtime.seconds());
             telemetry.update();
         }
@@ -70,8 +70,15 @@ public class DepotAutonomous extends LinearOpMode{
         // move to crater
         leftMotor.setPower(speed + error);
         rightMotor.setPower(speed);
-        while(opModeIsActive() && runtime.seconds() < 1.5){
+        while(opModeIsActive() && runtime.seconds() < 1.1){
             telemetry.addData("To Crater", "true", runtime.seconds());
+            telemetry.update();
+        }
+
+        leftMotor.setPower(speed * 2);
+        rightMotor.setPower(speed * 2);
+        while(opModeIsActive() && runtime.seconds() < 1.5){
+            telemetry.addData("Half Over The Crater", "true", runtime.seconds());
             telemetry.update();
         }
 
