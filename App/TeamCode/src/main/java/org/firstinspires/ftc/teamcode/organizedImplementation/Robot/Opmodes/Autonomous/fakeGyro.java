@@ -1,5 +1,9 @@
 package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes.Autonomous;
 
+/**
+ * Ryan's fun code
+ */
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;

@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-@Autonomous (name = "Depot Autonomous 0.7", group = "Autonomous")
+@Autonomous (name = "Depot Autonomous 1.0", group = "Autonomous")
 //@Disabled
 public class DepotAutonomous3 extends LinearOpMode{
 
@@ -63,7 +63,7 @@ public class DepotAutonomous3 extends LinearOpMode{
         // turn from current position to crater
         leftMotor.setPower(-speed - error);
         rightMotor.setPower(speed);
-        while(opModeIsActive() && runtime.seconds() < 0.7){
+        while(opModeIsActive() && runtime.seconds() < 1.0){
             telemetry.addData("Turn Towards To Crater", "true", runtime.seconds());
             telemetry.update();
         }

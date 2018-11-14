@@ -63,7 +63,7 @@ public class DepotAutonomous extends LinearOpMode{
         // turn from current position to crater
         leftMotor.setPower(-speed - error);
         rightMotor.setPower(speed);
-        while(opModeIsActive() && runtime.seconds() < 0.5){
+        while(opModeIsActive() && runtime.seconds() < 0.8){
             telemetry.addData("Turn Towards To Crater", "true", runtime.seconds());
             telemetry.update();
         }
