@@ -27,6 +27,8 @@ public class fakeGyro extends LinearOpMode {
         waitForStart();
 
         if(opModeIsActive()){
+            //at least goes to the correct position
+            //i know, its not gyro , i tried ;(
             gyro(0.75, 0.75, 875);
             gyro(-0.25, 0.25, 775);
             gyro(0.8, 0.8, 850);
