@@ -141,6 +141,7 @@ public class MainTeleOp extends LinearOpMode {
 
             // Core Hex Motors
             turningMotor.setPower(gamepad2.left_stick_y * 0.5);
+            extendingMotor.setPower(gamepad2.right_stick_y * 0.5);
 
             // Servos
             if(gamepad2.y) {
@@ -223,7 +224,7 @@ public class MainTeleOp extends LinearOpMode {
 
     private void addMessages() {
         telemetry.addData("Motors (gamepad 1)", "use left and right sticks");
-        telemetry.addData("Core Hex Motors (gamepad 2)", "use left stick");
+        telemetry.addData("Core Hex Motors (gamepad 2)", "use left (turning) and right (extending)");
         telemetry.addData("Servos (gamepad 1)", "X = leftClose, Y = leftOpen, A = rightClose, B = rightOpen");
         telemetry.addData("To switch between modes (gamepad 1)", "press right bumper");
         telemetry.addData("To stop all movement (gamepad 1)", "press left bumper");
