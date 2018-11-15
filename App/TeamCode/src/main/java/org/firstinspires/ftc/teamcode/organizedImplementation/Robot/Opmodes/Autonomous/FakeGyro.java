@@ -16,11 +16,16 @@ public class FakeGyro extends LinearOpMode {
     private DcMotor leftMotor;
     private DcMotor rightMotor;
 
+    private DcMotor turningMotor;
+    private DcMotor extendingMotor;
+
     private ElapsedTime runtime = new ElapsedTime();
 
     public void runOpMode(){
         leftMotor = hardwareMap.dcMotor.get("left_motor");
         rightMotor = hardwareMap.dcMotor.get("right_motor");
+        turningMotor = hardwareMap.dcMotor.get("turning_motor");
+        extendingMotor = hardwareMap.dcMotor.get("extending_motor");
 
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         rightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -44,5 +49,9 @@ public class FakeGyro extends LinearOpMode {
         leftMotor.setPower(left);
         rightMotor.setPower(right);
         sleep(time);
+    }
+
+    public void teamMarker(double power, int time){
+
     }
 }

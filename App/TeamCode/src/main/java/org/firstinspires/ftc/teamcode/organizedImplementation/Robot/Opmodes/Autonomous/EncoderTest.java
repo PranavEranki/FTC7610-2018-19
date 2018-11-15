@@ -78,6 +78,7 @@ public class EncoderTest extends LinearOpMode {
         encoderDrive(0.5, 12, -6, 1.5);
         encoderDrive(0.6, 5, 5, 2);
         encoderDrive(0.5, 12, -6, 1.5);
+
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
