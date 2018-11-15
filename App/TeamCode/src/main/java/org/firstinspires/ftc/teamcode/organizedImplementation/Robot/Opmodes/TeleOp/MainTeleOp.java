@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
 
 /*
 
@@ -53,14 +54,10 @@ public class MainTeleOp extends LinearOpMode {
     private double rightPower = 0;
 
     // Servo variables
-    private final int MIN = 0;
-    private final int MAX = 1;
     private final double INCREMENT = 0.005;
-    private double left_Servo_Placement = 0;
-    private double right_Servo_Placement = 0;
-    private final double SERVO_MARGIN = 0.01;
+    private double servo_Placement = 0;
 
-    private boolean accelMode = true;
+    private boolean accelMode = false;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -80,7 +77,7 @@ public class MainTeleOp extends LinearOpMode {
         rightServo = hardwareMap.servo.get("right_servo");
 
         leftServo.setPosition(0);
-        rightServo.setPosition(0);
+        rightServo.setPosition(1);
 
         telemetry.addData("Mapped", "mapping complete");
         telemetry.update();
@@ -144,62 +141,16 @@ public class MainTeleOp extends LinearOpMode {
             extendingMotor.setPower(gamepad2.right_stick_y * 0.5);
 
             // Servos
-            if(gamepad2.y) {
-                leftOpen();
-                servoPos();
-            }
             if (gamepad2.x) {
-                leftClose();
-                servoPos();
+                servo_Placement = Range.clip(servo_Placement + INCREMENT, 0, 1);
             }
-
-            if(gamepad2.b){
-                rightOpen();
-                servoPos();
+            if (gamepad2.b) {
+                servo_Placement = Range.clip(servo_Placement - INCREMENT, 0, 1);
             }
-            if (gamepad2.a){
-                rightClose();
-                servoPos();
-            }
+            leftServo.setPosition(servo_Placement);
+            rightServo.setPosition(1 - servo_Placement);
             telemetry.update();
         }
-    }
-
-    private void leftOpen(){
-        if (left_Servo_Placement >= (MAX - SERVO_MARGIN)) {
-            left_Servo_Placement = MAX - SERVO_MARGIN;
-        } else {
-            left_Servo_Placement += INCREMENT;
-        }
-    }
-
-    private void leftClose(){
-        if (left_Servo_Placement <= (MIN + SERVO_MARGIN)) {
-            left_Servo_Placement = MIN + SERVO_MARGIN;
-        } else {
-            left_Servo_Placement -= INCREMENT;
-        }
-    }
-
-    private void rightOpen(){
-        if (right_Servo_Placement >= (MAX - SERVO_MARGIN)) {
-            right_Servo_Placement = MAX - SERVO_MARGIN;
-        } else {
-            right_Servo_Placement += INCREMENT;
-        }
-    }
-
-    private void rightClose(){
-        if (right_Servo_Placement <= (MIN + SERVO_MARGIN)) {
-            right_Servo_Placement = MIN + SERVO_MARGIN;
-        } else {
-            right_Servo_Placement -= INCREMENT;
-        }
-    }
-
-    private void servoPos() {
-        leftServo.setPosition(left_Servo_Placement);
-        rightServo.setPosition(right_Servo_Placement);
     }
 
     private double limitIncrement(double initial, double inc, double limit) {
@@ -223,13 +174,13 @@ public class MainTeleOp extends LinearOpMode {
     }
 
     private void addMessages() {
+        telemetry.addData("Servo Placements", "Left" + servo_Placement + ", Right: " + (1 - servo_Placement));
+        telemetry.addData("Motor Speed", "Left - " + leftPower + ", Right - " + rightPower);
         telemetry.addData("Motors (gamepad 1)", "use left and right sticks");
         telemetry.addData("Core Hex Motors (gamepad 2)", "use left (turning) and right (extending)");
-        telemetry.addData("Servos (gamepad 1)", "X = leftClose, Y = leftOpen, A = rightClose, B = rightOpen");
+        telemetry.addData("Servos (gamepad 1)", "X = Open, B = Close");
         telemetry.addData("To switch between modes (gamepad 1)", "press right bumper");
         telemetry.addData("To stop all movement (gamepad 1)", "press left bumper");
-        telemetry.addData("Servo Placements", "Left - " + left_Servo_Placement + ", Right - " + right_Servo_Placement);
-        telemetry.addData("Motor Speed", "Left - " + leftPower + ", Right - " + rightPower);
     }
 
 }

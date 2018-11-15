@@ -39,6 +39,12 @@ public class AllServos extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
+        telemetry.addData("Servo", servoZero.getPosition());
+        telemetry.addData("Servo", servoOne.getPosition());
+        telemetry.addData("Servo", servoTwo.getPosition());
+        telemetry.addData("Servo", servoThree.getPosition());
+        telemetry.addData("Servo", servoFour.getPosition());
+        telemetry.addData("Servo", servoFive.getPosition());
         servoZero.setPosition(0.5);
         servoOne.setPosition(0.5);
         servoTwo.setPosition(0.5);
@@ -62,6 +68,12 @@ public class AllServos extends LinearOpMode {
             servoFour.setPosition(servo_Placement);
             servoFive.setPosition(servo_Placement);
             telemetry.addData("Servo", servo_Placement);
+            telemetry.addData("Servo", servoZero.getPosition());
+            telemetry.addData("Servo", servoOne.getPosition());
+            telemetry.addData("Servo", servoTwo.getPosition());
+            telemetry.addData("Servo", servoThree.getPosition());
+            telemetry.addData("Servo", servoFour.getPosition());
+            telemetry.addData("Servo", servoFive.getPosition());
             telemetry.update();
         }
     }
