@@ -31,6 +31,7 @@ public class DepotAutonomous extends LinearOpMode{
         waitForStart();
 
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         runtime.reset();
 
@@ -44,7 +45,7 @@ public class DepotAutonomous extends LinearOpMode{
         leftMotor.setPower(0);
         rightMotor.setPower(0);
 
-        /*
+
         // bring out marker and put down
         // still need to code for motor for linear slide
         turningMotor.setPower(1);
@@ -58,7 +59,7 @@ public class DepotAutonomous extends LinearOpMode{
             telemetry.update();
         }
         turningMotor.setPower(0);
-        */
+
 
         // turn from current position to crater
         leftMotor.setPower(-speed - error);
