@@ -34,9 +34,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "move", group = "Concept")
+@TeleOp(name = "Servo Move", group = "Concept")
 
-public class servoMove extends LinearOpMode {
+public class ServoMove extends LinearOpMode {
     // Define class members
     Servo   servo;
     double  position = 0;
