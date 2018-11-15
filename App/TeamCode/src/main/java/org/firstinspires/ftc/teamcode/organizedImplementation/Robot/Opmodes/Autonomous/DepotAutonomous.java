@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-@Autonomous (name = "Depot Autonomous 0.8", group = "Autonomous")
+@Autonomous (name = "Depot Autonomous", group = "Autonomous")
 //@Disabled
 public class DepotAutonomous extends LinearOpMode{
 

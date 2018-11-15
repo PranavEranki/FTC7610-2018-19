@@ -11,7 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 10/3/18 - Unable to initialize
 10/4/18 - Fixed the issue
  */
-@Autonomous(name="Encoder Test", group ="red")
+@Autonomous(name="Encoder Test", group ="Encoder")
 
 
 public class EncoderTest extends LinearOpMode {

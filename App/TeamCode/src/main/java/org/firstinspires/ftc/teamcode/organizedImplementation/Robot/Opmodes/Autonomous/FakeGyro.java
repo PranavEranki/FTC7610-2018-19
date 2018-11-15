@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-@Autonomous (name = "Fake Gyro", group =  "Autonomous")
+@Autonomous (name = "Fake Gyro", group =  "Gyro")
 //@Disabled
 public class FakeGyro extends LinearOpMode {
     private DcMotor leftMotor;
