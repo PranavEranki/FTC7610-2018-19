@@ -141,6 +141,7 @@ public class MainTeleOp extends LinearOpMode {
             extendingMotor.setPower(gamepad2.right_stick_y * 0.5);
 
             // Servos
+            // Switch if open/close are opposite
             if (gamepad2.x) {
                 servo_Placement = Range.clip(servo_Placement + INCREMENT, 0, 1);
             }
@@ -174,7 +175,7 @@ public class MainTeleOp extends LinearOpMode {
     }
 
     private void addMessages() {
-        telemetry.addData("Servo Placements", "Left" + servo_Placement + ", Right: " + (1 - servo_Placement));
+        telemetry.addData("Servo Placements", "Left - " + servo_Placement + ", Right - " + (1 - servo_Placement));
         telemetry.addData("Motor Speed", "Left - " + leftPower + ", Right - " + rightPower);
         telemetry.addData("Motors (gamepad 1)", "use left and right sticks");
         telemetry.addData("Core Hex Motors (gamepad 2)", "use left (turning) and right (extending)");
