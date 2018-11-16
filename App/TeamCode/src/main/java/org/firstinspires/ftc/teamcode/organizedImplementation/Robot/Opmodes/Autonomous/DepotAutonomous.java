@@ -38,13 +38,15 @@ public class DepotAutonomous extends LinearOpMode{
         // go straight from start to depot
         leftMotor.setPower(speed + error);
         rightMotor.setPower(speed);
-        while(opModeIsActive() && runtime.seconds() < 0.5){
+        while(opModeIsActive() && runtime.seconds() < 0.85){
             telemetry.addData("To Depot", "true", runtime.seconds());
             telemetry.update();
         }
         leftMotor.setPower(0);
         rightMotor.setPower(0);
 
+
+        /*
 
         // bring out marker and put down
         // still need to code for motor for linear slide
@@ -60,11 +62,12 @@ public class DepotAutonomous extends LinearOpMode{
         }
         turningMotor.setPower(0);
 
+        */
 
         // turn from current position to crater
         leftMotor.setPower(-speed - error);
         rightMotor.setPower(speed);
-        while(opModeIsActive() && runtime.seconds() < 0.8){
+        while(opModeIsActive() && runtime.seconds() < 0.9){
             telemetry.addData("Turn Towards To Crater", "true", runtime.seconds());
             telemetry.update();
         }
