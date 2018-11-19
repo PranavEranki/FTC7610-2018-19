@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 
-@TeleOp(name = "TestingGyro", group = "Gyro")
+@TeleOp(name = "Testing Gyro V2", group = "Gyro")
 public class TestingGyroV2 extends LinearOpMode {
 
 
