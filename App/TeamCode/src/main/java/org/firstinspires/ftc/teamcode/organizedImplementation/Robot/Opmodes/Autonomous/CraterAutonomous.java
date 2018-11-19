@@ -31,7 +31,7 @@ public class CraterAutonomous extends LinearOpMode{
         waitForStart();
 
         leftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         runtime.reset();
 

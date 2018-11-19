@@ -30,7 +30,7 @@ public class DepotAutonomous extends LinearOpMode{
 
         waitForStart();
 
-        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         rightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         runtime.reset();

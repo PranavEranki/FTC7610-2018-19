@@ -83,6 +83,7 @@ public class MainTeleOp extends LinearOpMode {
         telemetry.update();
 
         rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
         runtime.reset();
