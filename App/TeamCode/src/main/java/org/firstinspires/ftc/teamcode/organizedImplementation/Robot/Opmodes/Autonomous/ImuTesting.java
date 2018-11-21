@@ -27,8 +27,8 @@ import android.view.View;*/
 
 
 //declaring that it is an autonomous opmode
-@Autonomous(name="AutoBeta")
-@Disabled
+@Autonomous(name="IMU Testing")
+//@Disabled
 //don't show "variable unused" or "access could be different" warnings: not always needed
 @SuppressWarnings({"unused", "WeakerAccess"})
 
