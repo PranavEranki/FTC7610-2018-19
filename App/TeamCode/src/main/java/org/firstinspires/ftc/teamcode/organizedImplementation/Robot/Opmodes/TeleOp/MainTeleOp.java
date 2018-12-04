@@ -85,6 +85,8 @@ public class MainTeleOp extends LinearOpMode {
         rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        turningMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
         waitForStart();
         runtime.reset();
 
