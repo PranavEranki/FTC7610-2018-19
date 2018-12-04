@@ -133,8 +133,8 @@ public class MainTeleOp extends LinearOpMode {
                 telemetry.addData("Mode", "No Acceleration");
                 addMessages();
 
-                leftMotor.setPower(gamepad1.left_stick_y * 0.75);
-                rightMotor.setPower(gamepad1.right_stick_y * 0.75);
+                leftMotor.setPower(gamepad1.left_stick_y * 1.0);
+                rightMotor.setPower(gamepad1.right_stick_y * 0.5);
             }
 
             // Core Hex Motors

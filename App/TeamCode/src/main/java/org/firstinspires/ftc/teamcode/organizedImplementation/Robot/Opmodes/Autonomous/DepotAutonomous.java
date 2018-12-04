@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes.Aut
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
@@ -16,8 +17,11 @@ public class DepotAutonomous extends LinearOpMode{
     private DcMotor turningMotor;
     private DcMotor extendingMotor;
 
-    private double speed = 0.5;
-    private double error = 0.0001;
+    private Servo leftServo;
+    private Servo rightServo;
+
+    private final double leftSpeed = 1.0;
+    private final double rightSpeed = 0.5;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -25,9 +29,11 @@ public class DepotAutonomous extends LinearOpMode{
         leftMotor = hardwareMap.dcMotor.get("left_motor");
         rightMotor = hardwareMap.dcMotor.get("right_motor");
 
-        //turningMotor = hardwareMap.dcMotor.get("turning_motor");
-        //extendingMotor = hardwareMap.dcMotor.get("extending_motor");
+        turningMotor = hardwareMap.dcMotor.get("turning_motor");
+        extendingMotor = hardwareMap.dcMotor.get("extending_motor");
 
+        leftServo = hardwareMap.servo.get("left_servo");
+        rightServo = hardwareMap.servo.get("right_servo");
         waitForStart();
 
         leftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -36,8 +42,8 @@ public class DepotAutonomous extends LinearOpMode{
         runtime.reset();
 
         // go straight from start to depot
-        leftMotor.setPower(speed + error);
-        rightMotor.setPower(speed);
+        leftMotor.setPower(leftSpeed);
+        rightMotor.setPower(rightSpeed);
         while(opModeIsActive() && runtime.seconds() < 0.85){
             telemetry.addData("To Depot", "true", runtime.seconds());
             telemetry.update();
@@ -46,49 +52,58 @@ public class DepotAutonomous extends LinearOpMode{
         rightMotor.setPower(0);
 
 
-        /*
 
+
+        runtime.reset();
         // bring out marker and put down
         // still need to code for motor for linear slide
         turningMotor.setPower(1);
-        while(opModeIsActive() && runtime.seconds() < 2.0){
-            telemetry.addData("Drop the Team Marker", "true", runtime.seconds());
+        extendingMotor.setPower(1);
+        while(opModeIsActive() && runtime.seconds() < 3.0){
+            telemetry.addData("Move Motor", "true", runtime.seconds());
             telemetry.update();
         }
+        turningMotor.setPower(0);
+        extendingMotor.setPower(0);
+
+        leftServo.setPosition(0);
+        rightServo.setPosition(1);
+        telemetry.addData("Dropped", "true", runtime.seconds());
+        telemetry.update();
+
+        runtime.reset();
         turningMotor.setPower(-1);
-        while(opModeIsActive() && runtime.seconds() < 2.0){
+        extendingMotor.setPower(-1);
+        while(opModeIsActive() && runtime.seconds() < 3.0){
             telemetry.addData("Put the motor back at its original position", "true", runtime.seconds());
             telemetry.update();
         }
         turningMotor.setPower(0);
+        extendingMotor.setPower(0);
 
-        */
 
+
+        runtime.reset();
         // turn from current position to crater
-        leftMotor.setPower(-speed - error);
-        rightMotor.setPower(speed);
-        while(opModeIsActive() && runtime.seconds() < 0.9){
-            telemetry.addData("Turn Towards To Crater", "true", runtime.seconds());
+        leftMotor.setPower(-leftSpeed);
+        rightMotor.setPower(rightSpeed);
+        while(opModeIsActive() && runtime.seconds() < 0.8){
+            telemetry.addData("Turn Left Towards Crater", "true", runtime.seconds());
             telemetry.update();
         }
 
         // move to crater
-        leftMotor.setPower(speed + error);
-        rightMotor.setPower(speed);
-        while(opModeIsActive() && runtime.seconds() < 1.1){
+        leftMotor.setPower(leftSpeed);
+        rightMotor.setPower(rightSpeed);
+        while(opModeIsActive() && runtime.seconds() < 2.0){
             telemetry.addData("To Crater", "true", runtime.seconds());
-            telemetry.update();
-        }
-
-        leftMotor.setPower(speed * 2);
-        rightMotor.setPower(speed * 2);
-        while(opModeIsActive() && runtime.seconds() < 1.5){
-            telemetry.addData("Half Over The Crater", "true", runtime.seconds());
             telemetry.update();
         }
 
         // stop all movement
         leftMotor.setPower(0);
         rightMotor.setPower(0);
+        telemetry.addData("Autonomous Finished", "true", runtime.seconds());
+        telemetry.update();
     }
 }

@@ -16,8 +16,8 @@ public class CraterAutonomous extends LinearOpMode{
     private DcMotor turningMotor;
     private DcMotor extendingMotor;
 
-    private double speed = 0.5;
-    private double error = 0.0001;
+    private final double leftSpeed = 1.0;
+    private final double rightSpeed = 0.5;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -36,13 +36,17 @@ public class CraterAutonomous extends LinearOpMode{
         runtime.reset();
 
         // go straight from start to crater
-        leftMotor.setPower(speed + error);
-        rightMotor.setPower(speed);
+        leftMotor.setPower(leftSpeed);
+        rightMotor.setPower(rightSpeed);
+        //full speed ahead
+        //go go go go go
         while(opModeIsActive() && runtime.seconds() < 2){
             telemetry.addData("To Crater", "true", runtime.seconds());
             telemetry.update();
         }
         leftMotor.setPower(0);
         rightMotor.setPower(0);
+        telemetry.addData("Autonomous Finished", "true", runtime.seconds());
+        telemetry.update();
     }
 }
