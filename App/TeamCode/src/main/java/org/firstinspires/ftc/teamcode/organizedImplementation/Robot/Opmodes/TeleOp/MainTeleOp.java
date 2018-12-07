@@ -86,6 +86,7 @@ public class MainTeleOp extends LinearOpMode {
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         turningMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        turningMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         waitForStart();
         runtime.reset();
@@ -140,8 +141,8 @@ public class MainTeleOp extends LinearOpMode {
             }
 
             // Core Hex Motors
-            turningMotor.setPower(gamepad2.left_stick_y * 0.5);
-            extendingMotor.setPower(gamepad2.right_stick_y * 0.5);
+            turningMotor.setPower(gamepad2.left_stick_y * 0.75);
+            extendingMotor.setPower(gamepad2.right_stick_y * 0.75);
 
             // Servos
             // Switch if open/close are opposite
