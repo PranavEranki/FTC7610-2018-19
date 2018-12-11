@@ -18,7 +18,8 @@ public class NewControlTeleOp extends LinearOpMode {
     private DcMotor latchMotor;
     private ElapsedTime runtime = new ElapsedTime();
 
-    public void OpMode(){
+    @Override
+    public void runOpMode(){
         latchMotor = hardwareMap.dcMotor.get("latch_motor");
 
         waitForStart();
@@ -30,7 +31,7 @@ public class NewControlTeleOp extends LinearOpMode {
             if(gamepad2.right_trigger != 0){
                 latchMotor.setPower(-gamepad2.right_trigger);
             }
-
+            //up
             if(gamepad2.right_bumper){
                 latchMotor.setPower(upValue);
             }
