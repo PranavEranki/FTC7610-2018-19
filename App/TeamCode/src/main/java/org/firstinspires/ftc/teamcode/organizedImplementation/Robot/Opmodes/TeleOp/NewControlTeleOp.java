@@ -27,6 +27,8 @@ public class NewControlTeleOp extends LinearOpMode {
     @Override
     public void runOpMode(){
         latchMotor = hardwareMap.dcMotor.get("latch_motor");
+        latchMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        latchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         leftServo = hardwareMap.servo.get("left_servo");
         rightServo = hardwareMap.servo.get("right_servo");
@@ -49,8 +51,24 @@ public class NewControlTeleOp extends LinearOpMode {
             if(gamepad2.right_bumper){
                 latchMotor.setPower(upValue);
             }
-            leftServo.setPosition(gamepad2.left_stick_x);
-            rightServo.setPosition(gamepad2.right_stick_x);
+            if(gamepad2.left_stick_x < 0) {
+                leftServo.setPosition((gamepad2.left_stick_x + 1) * 0.5);
+            }
+            if(gamepad2.left_stick_x > 0){
+                leftServo.setPosition(gamepad2.left_stick_x);
+            }
+            if(gamepad2.right_stick_x > 0){
+                rightServo.setPosition(gamepad2.right_stick_x);
+            }
+            if(gamepad2.right_stick_x < 0){
+                rightServo.setPosition((-gamepad2.right_stick_x - 1) * 0.5);
+            }
+            telemetry.addData("Left Servo Position: ", leftServoPlacement);
+            telemetry.addData("Right Servo Position: ", rightServoPlacement);
+            telemetry.update();
         }
     }
 }
+//0,
+// -1, 0, 1 // 0, 1, 2
+// 0, 1

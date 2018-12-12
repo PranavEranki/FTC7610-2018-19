@@ -24,7 +24,7 @@ public class LatchingTeleOp extends LinearOpMode {
     @Override
     public void runOpMode(){
         latchMotor = hardwareMap.dcMotor.get("latch_motor");
-        latchMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        latchMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         latchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         telemetry.addData("Init", "true");
