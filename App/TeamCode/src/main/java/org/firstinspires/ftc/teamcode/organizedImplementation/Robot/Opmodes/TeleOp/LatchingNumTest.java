@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.util.Range;
 //@Disabled
 public class LatchingNumTest extends LinearOpMode {
 
-    private DcMotor latchMotor;
+    private DcMotor latch_motor;
     private ElapsedTime runtime = new ElapsedTime();
 
     private final double maxSpeed = 1;
@@ -25,14 +25,14 @@ public class LatchingNumTest extends LinearOpMode {
 
     @Override
     public void runOpMode(){
-        latchMotor = hardwareMap.dcMotor.get("latch_motor");
-        latchMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        latchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        latch_motor = hardwareMap.dcMotor.get("latch_motor");
+        latch_motor.setDirection(DcMotorSimple.Direction.FORWARD);
+        latch_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         telemetry.addData("Init", "true");
         telemetry.update();
 
-        latchMotor.setPower(stop);
+        latch_motor.setPower(stop);
 
         waitForStart();
         runtime.reset();
@@ -45,7 +45,7 @@ public class LatchingNumTest extends LinearOpMode {
                 speed -= inc;
             }
             if(gamepad2.right_bumper) {
-                latchMotor.setPower(speed);
+                latch_motor.setPower(speed);
             }
             telemetry.addData("Speed: " , speed);
             telemetry.update();

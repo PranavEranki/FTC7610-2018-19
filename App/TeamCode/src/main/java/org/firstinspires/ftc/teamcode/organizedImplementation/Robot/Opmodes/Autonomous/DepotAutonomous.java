@@ -20,6 +20,8 @@ public class DepotAutonomous extends LinearOpMode{
     private Servo leftServo;
     private Servo rightServo;
 
+    private DcMotor latch_motor;
+
     private final double leftSpeed = 1.0;
     private final double rightSpeed = 0.5;
 
@@ -32,12 +34,26 @@ public class DepotAutonomous extends LinearOpMode{
         turningMotor = hardwareMap.dcMotor.get("turning_motor");
         extendingMotor = hardwareMap.dcMotor.get("extending_motor");
 
+        latch_motor = hardwareMap.dcMotor.get("latch_motor");
+        latch_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         leftServo = hardwareMap.servo.get("left_servo");
         rightServo = hardwareMap.servo.get("right_servo");
         waitForStart();
 
         leftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         rightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        runtime.reset();
+
+        //runtime.reset();
+
+        latch_motor.setPower(-0.8);
+        while(opModeIsActive() && runtime.seconds() < 2){
+            telemetry.addData("Unlatching...", "true", runtime.seconds());
+            telemetry.update();
+        }
+        latch_motor.setPower(0);
 
         runtime.reset();
 

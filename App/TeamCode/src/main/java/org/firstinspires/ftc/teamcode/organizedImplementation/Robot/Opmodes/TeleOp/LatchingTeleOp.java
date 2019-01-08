@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.util.Range;
 //@Disabled
 public class LatchingTeleOp extends LinearOpMode {
 
-    private DcMotor latchMotor;
+    private DcMotor latch_motor;
     private ElapsedTime runtime = new ElapsedTime();
 
     private final double maxSpeed = 1;
@@ -23,23 +23,23 @@ public class LatchingTeleOp extends LinearOpMode {
 
     @Override
     public void runOpMode(){
-        latchMotor = hardwareMap.dcMotor.get("latch_motor");
-        latchMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        latchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        latch_motor = hardwareMap.dcMotor.get("latch_motor");
+        latch_motor.setDirection(DcMotorSimple.Direction.FORWARD);
+        latch_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         telemetry.addData("Init", "true");
         telemetry.update();
 
-        latchMotor.setPower(stop);
+        latch_motor.setPower(stop);
 
         waitForStart();
         runtime.reset();
 
         while(opModeIsActive()){
             if(gamepad2.right_bumper){
-                latchMotor.setPower(maxSpeed * 0.8);
+                latch_motor.setPower(maxSpeed * 0.8);
             }else if (gamepad2.right_trigger != 0){
-                latchMotor.setPower(minSpeed * 0.8);
+                latch_motor.setPower(minSpeed * 0.8);
             }
         }
         //test out
