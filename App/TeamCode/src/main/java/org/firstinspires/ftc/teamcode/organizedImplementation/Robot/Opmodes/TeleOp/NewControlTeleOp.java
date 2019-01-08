@@ -71,7 +71,7 @@ public class NewControlTeleOp extends LinearOpMode {
         turningMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         turningMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        telemetry.addData("hardware maoping complete", "true");
+        telemetry.addData("hardware mapping complete", "true");
         telemetry.update();
 
         leftServo.setPosition(leftServoPlacement);
@@ -129,6 +129,14 @@ public class NewControlTeleOp extends LinearOpMode {
             //}
             //down
 
+
+
+
+
+
+
+
+            // servo code, works, do not question!!
             if(gamepad2.left_stick_x < 0) {
                 leftServo.setPosition((gamepad2.left_stick_x + 1) * 0.5);
             }
@@ -141,6 +149,15 @@ public class NewControlTeleOp extends LinearOpMode {
             if(gamepad2.right_stick_x < 0){
                 rightServo.setPosition((-gamepad2.right_stick_x - 1) * 0.5);
             }
+
+
+
+
+
+
+
+
+
             /*if(gamepad2.dpad_up){
                 turningMotor.setPower(turnPower); // turnPower
                 telemetry.addData("Up, turnPower: ", turnPower);
@@ -160,11 +177,17 @@ public class NewControlTeleOp extends LinearOpMode {
             }else{
                 extendingMotor.setPower(0);
             }
-            if(gamepad2.left_trigger > 0){
-                turningMotor.setPower(gamepad2.left_trigger);
-                telemetry.addData("Up, turnPower: ", gamepad2.left_trigger);
-                telemetry.update();
-            }else{
+//            if(gamepad2.left_trigger > 0){
+//                turningMotor.setPower(gamepad2.left_trigger);
+//                telemetry.addData("Up, turnPower: ", gamepad2.left_trigger);
+//                telemetry.update();
+//            }else{
+//                turningMotor.setPower(0);
+//            }
+            if(gamepad2.a){
+                while(gamepad2.a) {
+                    turningMotor.setPower(1);
+                }
                 turningMotor.setPower(0);
             }
             if(gamepad2.right_bumper){
