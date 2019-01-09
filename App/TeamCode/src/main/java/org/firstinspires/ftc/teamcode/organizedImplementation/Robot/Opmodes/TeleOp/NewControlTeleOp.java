@@ -16,7 +16,7 @@ public class NewControlTeleOp extends LinearOpMode {
 
     private final double upValue = 0.5;
 
-    //private DcMotor latchMotor;
+    private DcMotor latchMotor;
 
     private DcMotor leftMotor;
     private DcMotor rightMotor;
@@ -60,9 +60,9 @@ public class NewControlTeleOp extends LinearOpMode {
         extendingMotor = hardwareMap.dcMotor.get("extending_motor");
         turningMotor = hardwareMap.dcMotor.get("turning_motor");
 
-        //latchMotor = hardwareMap.dcMotor.get("latch_motor");
-        //latchMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        //latchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        latchMotor = hardwareMap.dcMotor.get("latch_motor");
+        latchMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        latchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         leftServo = hardwareMap.servo.get("left_servo");
         rightServo = hardwareMap.servo.get("right_servo");
@@ -121,12 +121,18 @@ public class NewControlTeleOp extends LinearOpMode {
                 rightMotor.setPower(gamepad1.right_stick_y * 0.5);
             }
             //up
-            //if(gamepad2.x){
-                //latchMotor.setPower(upValue);
-            //}
-            //if(gamepad2.b){
-                //latchMotor.setPower(-upValue);
-            //}
+            if(gamepad2.x){
+                while(gamepad2.x) {
+                    latchMotor.setPower(upValue);
+                }
+                latchMotor.setPower(0);
+            }
+            if(gamepad2.b){
+                while(gamepad2.b) {
+                    latchMotor.setPower(-upValue);
+                }
+                latchMotor.setPower(0);
+            }
             //down
 
 
@@ -177,19 +183,20 @@ public class NewControlTeleOp extends LinearOpMode {
             }else{
                 extendingMotor.setPower(0);
             }
-//            if(gamepad2.left_trigger > 0){
-//                turningMotor.setPower(gamepad2.left_trigger);
-//                telemetry.addData("Up, turnPower: ", gamepad2.left_trigger);
-//                telemetry.update();
-//            }else{
-//                turningMotor.setPower(0);
-//            }
-            if(gamepad2.a){
-                while(gamepad2.a) {
-                    turningMotor.setPower(1);
+            if(gamepad2.left_trigger > 0){
+                while(gamepad2.left_trigger > 0) {
+                    turningMotor.setPower(gamepad2.left_trigger);
+                    telemetry.addData("Up, turnPower: ", gamepad2.left_trigger);
+                    telemetry.update();
                 }
                 turningMotor.setPower(0);
             }
+//            if(gamepad2.a){
+//                while(gamepad2.a) {
+//                    turningMotor.setPower(1);
+//                }
+//                turningMotor.setPower(0);
+//            }
             if(gamepad2.right_bumper){
                 extendingMotor.setPower(extendPower);
             }else{
@@ -197,7 +204,7 @@ public class NewControlTeleOp extends LinearOpMode {
             }
             if(gamepad2.right_trigger > 0){
                 turningMotor.setPower(-gamepad2.right_trigger);
-                telemetry.addData("Down, turnPower: ", -turnPower);
+                telemetry.addData("Down, turnPower: ", -gamepad2.right_trigger);
                 telemetry.update();
             }else{
                 turningMotor.setPower(0);
@@ -232,10 +239,10 @@ public class NewControlTeleOp extends LinearOpMode {
         telemetry.addData("Servo Placements", "Left - " + servo_Placement + ", Right - " + (1 - servo_Placement));
         telemetry.addData("Motor Speed", "Left - " + leftPower + ", Right - " + rightPower);
         telemetry.addData("Motors (gamepad 1)", "use left and right sticks");
-        telemetry.addData("Core Hex Motors (gamepad 2)", "use left (turning) and right (extending)");
-        telemetry.addData("Servos (gamepad 1)", "X = Open, B = Close");
-        telemetry.addData("To switch between modes (gamepad 1)", "press right bumper");
-        telemetry.addData("To stop all movement (gamepad 1)", "press left bumper");
+        telemetry.addData("Core Hex Motors (gamepad 2)", "use left and right triggers (turning)");
+        telemetry.addData("Servos (gamepad 2)", "leftStick and rightStick, imitate servos");
+        telemetry.addData("To switch between modes (gamepad 1)", "press right bumper"); // ?
+        telemetry.addData("To stop all movement (gamepad 1)", "press left bumper"); // ?
     }
 }
 //0,
