@@ -122,15 +122,14 @@ public class NewControlTeleOp extends LinearOpMode {
             }
             //up
             if(gamepad2.x){
-                while(gamepad2.x) {
-                    latchMotor.setPower(upValue);
-                }
-                latchMotor.setPower(0);
-            }
-            if(gamepad2.b){
-                while(gamepad2.b) {
-                    latchMotor.setPower(-upValue);
-                }
+
+                latchMotor.setPower(upValue);
+
+                //latchMotor.setPower(0);
+            }else if(gamepad2.b){
+                latchMotor.setPower(-upValue);
+
+            }else{
                 latchMotor.setPower(0);
             }
             //down
@@ -180,15 +179,23 @@ public class NewControlTeleOp extends LinearOpMode {
             }*/
             if(gamepad2.left_bumper){
                 extendingMotor.setPower(-extendPower);
+            }else if(gamepad2.right_bumper){
+                extendingMotor.setPower(extendPower);
             }else{
                 extendingMotor.setPower(0);
             }
+
             if(gamepad2.left_trigger > 0){
-                while(gamepad2.left_trigger > 0) {
-                    turningMotor.setPower(gamepad2.left_trigger);
-                    telemetry.addData("Up, turnPower: ", gamepad2.left_trigger);
-                    telemetry.update();
-                }
+                //while(gamepad2.left_trigger > 0) {
+                turningMotor.setPower(gamepad2.left_trigger);
+                telemetry.addData("Up, turnPower: ", gamepad2.left_trigger);
+                telemetry.update();
+                //}
+            }else if(gamepad2.right_trigger > 0){
+                turningMotor.setPower(-gamepad2.right_trigger);
+                telemetry.addData("Down, turnPower: ", -gamepad2.right_trigger);
+                telemetry.update();
+            }else{
                 turningMotor.setPower(0);
             }
 //            if(gamepad2.a){
@@ -197,18 +204,7 @@ public class NewControlTeleOp extends LinearOpMode {
 //                }
 //                turningMotor.setPower(0);
 //            }
-            if(gamepad2.right_bumper){
-                extendingMotor.setPower(extendPower);
-            }else{
-                extendingMotor.setPower(0);
-            }
-            if(gamepad2.right_trigger > 0){
-                turningMotor.setPower(-gamepad2.right_trigger);
-                telemetry.addData("Down, turnPower: ", -gamepad2.right_trigger);
-                telemetry.update();
-            }else{
-                turningMotor.setPower(0);
-            }
+
             telemetry.addData("Left Servo Position: ", leftServoPlacement);
             telemetry.addData("Right Servo Position: ", rightServoPlacement);
             telemetry.update();
