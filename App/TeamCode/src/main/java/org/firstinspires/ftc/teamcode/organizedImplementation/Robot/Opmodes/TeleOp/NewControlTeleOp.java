@@ -6,7 +6,9 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.PwmControl;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.ServoControllerEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -14,17 +16,25 @@ import com.qualcomm.robotcore.util.Range;
 //@Disabled
 public class NewControlTeleOp extends LinearOpMode {
 
+
+    // latching variables
+    private Servo servo_motor_lift;
+    private ServoControllerEx latchMotor;
+    private int servo_port_lift;
+    private PwmControl.PwmRange theRange_lift;
     private final double upValue = 0.5;
 
-    private DcMotor latchMotor;
 
+
+
+
+
+
+    // motors
     private DcMotor leftMotor;
     private DcMotor rightMotor;
 
     private ElapsedTime runtime = new ElapsedTime();
-
-    private final double servoMax = 1;
-    private final double servoMin = 0;
 
     private double leftServoPlacement = 0;
     private double rightServoPlacement = 1;
@@ -41,7 +51,6 @@ public class NewControlTeleOp extends LinearOpMode {
     private double leftPower = 0;
     private double rightPower = 0;
 
-    private final double INCREMENT = 0.005;
     private double servo_Placement = 0;
 
     private boolean accelMode = false;
@@ -49,8 +58,21 @@ public class NewControlTeleOp extends LinearOpMode {
     private final double ACCEL = 0.003;
     private final double DECEL = 0.01;
 
+
+
+
+
+
+
+
+
+
+
     @Override
     public void runOpMode(){
+
+
+        // motors
         leftMotor = hardwareMap.dcMotor.get("left_motor");
         rightMotor = hardwareMap.dcMotor.get("right_motor");
 
@@ -60,10 +82,32 @@ public class NewControlTeleOp extends LinearOpMode {
         extendingMotor = hardwareMap.dcMotor.get("extending_motor");
         turningMotor = hardwareMap.dcMotor.get("turning_motor");
 
-        latchMotor = hardwareMap.dcMotor.get("latch_motor");
-        latchMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        latchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+
+
+
+        // latching motor setup
+        servo_motor_lift = hardwareMap.get(Servo.class, "latch_motor");
+        // Set the rotation servo for extended PWM range
+        if (servo_motor_lift.getController() instanceof ServoControllerEx) {
+            // Confirm its an extended range servo controller before we try to set to avoid crash
+            latchMotor = (ServoControllerEx) servo_motor_lift.getController();
+            servo_port_lift = servo_motor_lift.getPortNumber();
+            telemetry.addData("ServoPort#", servo_port_lift);
+            telemetry.update();
+            theRange_lift = new PwmControl.PwmRange(500, 2500);
+            latchMotor.setServoPwmRange(servo_port_lift, theRange_lift);
+        }
+        latchMotor.setServoPwmEnable(servo_port_lift);
+
+
+
+
+
+
+
+
+        // hardware mapping and setup for other servos and motors
         leftServo = hardwareMap.servo.get("left_servo");
         rightServo = hardwareMap.servo.get("right_servo");
 
@@ -77,14 +121,26 @@ public class NewControlTeleOp extends LinearOpMode {
         leftServo.setPosition(leftServoPlacement);
         rightServo.setPosition(rightServoPlacement);
 
+
+
         waitForStart();
         runtime.reset();
 
+
+
+
         while(opModeIsActive()){
+
+
+            // switch between modes
             if (gamepad1.right_bumper) {
                 accelMode = !accelMode;
             }
 
+
+
+
+            // motor code
             if (accelMode) {
                 telemetry.addData("Mode", "Acceleration");
                 addMessages();
@@ -120,19 +176,21 @@ public class NewControlTeleOp extends LinearOpMode {
                 leftMotor.setPower(gamepad1.left_stick_y * 1.0);
                 rightMotor.setPower(gamepad1.right_stick_y * 0.5);
             }
-            //up
+
+
+
+
+
+
+
+            // latch code
             if(gamepad2.x){
-
-                latchMotor.setPower(upValue);
-
-                //latchMotor.setPower(0);
-            }else if(gamepad2.b){
-                latchMotor.setPower(-upValue);
-
-            }else{
-                latchMotor.setPower(0);
+                set_latch_motor(upValue); // up
+            } else if(gamepad2.b){
+                set_latch_motor(-upValue); // down
+            } else{
+                set_latch_motor(0);
             }
-            //down
 
 
 
@@ -162,21 +220,7 @@ public class NewControlTeleOp extends LinearOpMode {
 
 
 
-
-            /*if(gamepad2.dpad_up){
-                turningMotor.setPower(turnPower); // turnPower
-                telemetry.addData("Up, turnPower: ", turnPower);
-                telemetry.update();
-            }else{
-                turningMotor.setPower(0);
-            }
-            if (gamepad2.dpad_down){
-                turningMotor.setPower(-turnPower); //-turnPower
-                telemetry.addData("Down, turnPower: ", turnPower);
-                telemetry.update();
-            }else{
-                turningMotor.setPower(0);
-            }*/
+            // linear slide extending
             if(gamepad2.left_bumper){
                 extendingMotor.setPower(-extendPower);
             }else if(gamepad2.right_bumper){
@@ -185,29 +229,31 @@ public class NewControlTeleOp extends LinearOpMode {
                 extendingMotor.setPower(0);
             }
 
+
+
+
+
+            // rotating linear slide
             if(gamepad2.left_trigger > 0){
-                //while(gamepad2.left_trigger > 0) {
                 turningMotor.setPower(gamepad2.left_trigger);
                 telemetry.addData("Up, turnPower: ", gamepad2.left_trigger);
                 telemetry.update();
-                //}
-            }else if(gamepad2.right_trigger > 0){
+            } else if(gamepad2.right_trigger > 0){
                 turningMotor.setPower(-gamepad2.right_trigger);
                 telemetry.addData("Down, turnPower: ", -gamepad2.right_trigger);
                 telemetry.update();
-            }else{
+            } else{
                 turningMotor.setPower(0);
             }
-//            if(gamepad2.a){
-//                while(gamepad2.a) {
-//                    turningMotor.setPower(1);
-//                }
-//                turningMotor.setPower(0);
-//            }
 
-            telemetry.addData("Left Servo Position: ", leftServoPlacement);
-            telemetry.addData("Right Servo Position: ", rightServoPlacement);
+
+
+
+
             telemetry.update();
+
+
+
         }
     }
 
@@ -232,15 +278,18 @@ public class NewControlTeleOp extends LinearOpMode {
     }
 
     private void addMessages() {
-        telemetry.addData("Servo Placements", "Left - " + servo_Placement + ", Right - " + (1 - servo_Placement));
         telemetry.addData("Motor Speed", "Left - " + leftPower + ", Right - " + rightPower);
+        telemetry.addData("Servos (gamepad 2)", "leftStick and rightStick, imitate servos");
+        telemetry.addData("Left Servo Position: ", leftServo.getPosition());
+        telemetry.addData("Right Servo Position: ", rightServo.getPosition());
         telemetry.addData("Motors (gamepad 1)", "use left and right sticks");
         telemetry.addData("Core Hex Motors (gamepad 2)", "use left and right triggers (turning)");
-        telemetry.addData("Servos (gamepad 2)", "leftStick and rightStick, imitate servos");
         telemetry.addData("To switch between modes (gamepad 1)", "press right bumper"); // ?
         telemetry.addData("To stop all movement (gamepad 1)", "press left bumper"); // ?
     }
+
+    public void set_latch_motor(double speed){
+        speed = Range.clip(speed, -1.0, 1.0) ;
+        latchMotor.setServoPosition(servo_port_lift,(speed+1)/2);
+    }
 }
-//0,
-// -1, 0, 1 // 0, 1, 2
-// 0, 1

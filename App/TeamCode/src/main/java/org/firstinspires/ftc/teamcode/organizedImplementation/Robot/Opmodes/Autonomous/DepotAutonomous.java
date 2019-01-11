@@ -46,11 +46,35 @@ public class DepotAutonomous extends LinearOpMode{
 
         runtime.reset();
 
-        //runtime.reset();
 
-        latch_motor.setPower(-0.8);
-        while(opModeIsActive() && runtime.seconds() < 2){
-            telemetry.addData("Unlatching...", "true", runtime.seconds());
+
+
+
+
+        // start
+        while(opModeIsActive() && runtime.seconds() < 15){
+            telemetry.addData("Waiting for space", "true", runtime.seconds());
+            telemetry.update();
+        }
+
+        runtime.reset();
+
+        // check for speed
+        latch_motor.setPower(-0.5);
+        while(opModeIsActive() && runtime.seconds() < 3){
+            telemetry.addData("Unlatching", "true", runtime.seconds());
+            telemetry.update();
+        }
+        latch_motor.setPower(0);
+
+        sleep(500);
+
+        runtime.reset();
+
+        leftMotor.setPower(leftSpeed);
+        rightMotor.setPower(rightSpeed);
+        while(opModeIsActive() && runtime.seconds() < 0.2){
+            telemetry.addData("Moving back", "true", runtime.seconds());
             telemetry.update();
         }
         latch_motor.setPower(0);

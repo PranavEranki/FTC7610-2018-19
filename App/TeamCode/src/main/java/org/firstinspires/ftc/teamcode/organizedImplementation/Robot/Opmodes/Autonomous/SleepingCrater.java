@@ -6,9 +6,9 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-@Autonomous (name = "Crater Autonomous", group = "Autonomous")
+@Autonomous (name = "Sleeping Crater Auto", group = "Autonomous")
 //@Disabled
-public class CraterAutonomous extends LinearOpMode{
+public class SleepingCrater extends LinearOpMode{
 
     private DcMotor leftMotor;
     private DcMotor rightMotor;
@@ -37,7 +37,8 @@ public class CraterAutonomous extends LinearOpMode{
 
         leftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         rightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-
+        runtime.reset();
+        sleep(15000);
         runtime.reset();
 
         latch_motor.setPower(-1);
@@ -98,3 +99,4 @@ public class CraterAutonomous extends LinearOpMode{
         telemetry.update();
     }
 }
+
