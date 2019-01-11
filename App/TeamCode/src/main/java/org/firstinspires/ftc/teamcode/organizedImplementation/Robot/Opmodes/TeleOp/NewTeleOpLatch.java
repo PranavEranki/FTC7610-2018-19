@@ -171,7 +171,6 @@ public class NewTeleOpLatch extends LinearOpMode {
                 rightMotor.setPower(rightPower * 0.75);
             } else {
                 telemetry.addData("Mode", "No Acceleration");
-                addMessages();
 
                 leftMotor.setPower(gamepad1.left_stick_y * 1.0);
                 rightMotor.setPower(gamepad1.right_stick_y * 0.5);
@@ -250,6 +249,7 @@ public class NewTeleOpLatch extends LinearOpMode {
 
 
 
+            addMessages();
             telemetry.update();
 
 
@@ -283,7 +283,7 @@ public class NewTeleOpLatch extends LinearOpMode {
         telemetry.addData("Left Servo Position: ", leftServo.getPosition());
         telemetry.addData("Right Servo Position: ", rightServo.getPosition());
         telemetry.addData("Motors (gamepad 1)", "use left and right sticks");
-        telemetry.addData("Core Hex Motors (gamepad 2)", "use left and right triggers (turning)");
+        telemetry.addData("Core Hex Motors (gamepad 2)", "use left and right triggers (turning) and bumpers (extending/bringing back)");
         telemetry.addData("To switch between modes (gamepad 1)", "press right bumper");
         telemetry.addData("To stop all movement (gamepad 1)", "press left bumper");
     }
