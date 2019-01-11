@@ -12,17 +12,19 @@ import com.qualcomm.robotcore.hardware.ServoControllerEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name = "NewControlTeleOp", group = "TeleOp")
+@TeleOp(name = "New TeleOp", group = "TeleOp")
 //@Disabled
-public class NewControlTeleOp extends LinearOpMode {
+public class NewTeleOp extends LinearOpMode {
 
 
     // latching variables
+    /*
     private Servo servo_motor_lift;
     private ServoControllerEx latchMotor;
     private int servo_port_lift;
     private PwmControl.PwmRange theRange_lift;
     private final double upValue = 0.5;
+    */
 
 
 
@@ -86,6 +88,7 @@ public class NewControlTeleOp extends LinearOpMode {
 
 
 
+        /*
         // latching motor setup
         servo_motor_lift = hardwareMap.get(Servo.class, "latch_motor");
         // Set the rotation servo for extended PWM range
@@ -99,6 +102,7 @@ public class NewControlTeleOp extends LinearOpMode {
             latchMotor.setServoPwmRange(servo_port_lift, theRange_lift);
         }
         latchMotor.setServoPwmEnable(servo_port_lift);
+        */
 
 
 
@@ -183,6 +187,7 @@ public class NewControlTeleOp extends LinearOpMode {
 
 
 
+            /*
             // latch code
             if(gamepad2.x){
                 set_latch_motor(upValue); // up
@@ -191,6 +196,7 @@ public class NewControlTeleOp extends LinearOpMode {
             } else{
                 set_latch_motor(0);
             }
+            */
 
 
 
@@ -288,8 +294,10 @@ public class NewControlTeleOp extends LinearOpMode {
         telemetry.addData("To stop all movement (gamepad 1)", "press left bumper"); // ?
     }
 
+    /*
     public void set_latch_motor(double speed){
         speed = Range.clip(speed, -1.0, 1.0) ;
         latchMotor.setServoPosition(servo_port_lift,(speed+1)/2);
     }
+    */
 }

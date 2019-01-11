@@ -10,9 +10,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.Range;
 
-@Autonomous (name = "Sleeping Crater", group = "Autonomous")
+@Autonomous (name = "Crater Autonomous w/ Latch", group = "Autonomous")
 //@Disabled
-public class SleepingCrater extends LinearOpMode {
+public class CraterAutonomousLatch extends LinearOpMode {
 
 
 
@@ -75,14 +75,7 @@ public class SleepingCrater extends LinearOpMode {
 
 
 
-
         // start
-        while(opModeIsActive() && runtime.seconds() < 15){
-            telemetry.addData("Waiting for space", "true", runtime.seconds());
-            telemetry.update();
-        }
-        runtime.reset();
-
         set_latch_motor(-1);
         while(opModeIsActive() && runtime.seconds() < 3){
             telemetry.addData("Unlatching...", "true", runtime.seconds());

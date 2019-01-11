@@ -31,9 +31,9 @@ its position by so that it does not open or close too quickly
 
 
  */
-@TeleOp (name = "Main TeleOp 0.8", group = "TeleOp")
+@TeleOp (name = "12/9 TeleOp", group = "TeleOp")
 //@Disabled
-public class test2 extends LinearOpMode {
+public class OldCompTeleOp extends LinearOpMode {
 
     // REV Robotics 40:1 Motors
     private DcMotor leftMotor;
@@ -85,6 +85,9 @@ public class test2 extends LinearOpMode {
         rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        turningMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        turningMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         waitForStart();
         runtime.reset();
 
@@ -133,13 +136,13 @@ public class test2 extends LinearOpMode {
                 telemetry.addData("Mode", "No Acceleration");
                 addMessages();
 
-                leftMotor.setPower(gamepad1.left_stick_y * 0.8);
-                rightMotor.setPower(gamepad1.right_stick_y * 0.75);
+                leftMotor.setPower(gamepad1.left_stick_y * 1.0);
+                rightMotor.setPower(gamepad1.right_stick_y * 0.5);
             }
 
             // Core Hex Motors
-            turningMotor.setPower(gamepad2.left_stick_y * 0.5);
-            extendingMotor.setPower(gamepad2.right_stick_y * 0.5);
+            turningMotor.setPower(gamepad2.left_stick_y * 0.75);
+            extendingMotor.setPower(gamepad2.right_stick_y * 0.75);
 
             // Servos
             // Switch if open/close are opposite

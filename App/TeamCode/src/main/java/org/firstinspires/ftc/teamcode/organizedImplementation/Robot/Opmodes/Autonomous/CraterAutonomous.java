@@ -16,8 +16,6 @@ public class CraterAutonomous extends LinearOpMode{
     private DcMotor turningMotor;
     private DcMotor extendingMotor;
 
-    private DcMotor latch_motor;
-
     private final double leftSpeed = 1.0;
     private final double rightSpeed = 0.5;
 
@@ -30,9 +28,6 @@ public class CraterAutonomous extends LinearOpMode{
         turningMotor = hardwareMap.dcMotor.get("turning_motor");
         extendingMotor = hardwareMap.dcMotor.get("extending_motor");
 
-        latch_motor = hardwareMap.dcMotor.get("latch_motor");
-        latch_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
         waitForStart();
 
         leftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -40,55 +35,12 @@ public class CraterAutonomous extends LinearOpMode{
 
         runtime.reset();
 
-        latch_motor.setPower(-1);
-        while(opModeIsActive() && runtime.seconds() < 3){
-            telemetry.addData("Unlatching...", "true", runtime.seconds());
-            telemetry.update();
-        }
-        latch_motor.setPower(0);
-
-        runtime.reset();
-
-        rightMotor.setPower(0.5);
-        leftMotor.setPower(1);
-        while(opModeIsActive() && runtime.milliseconds() < 200){
-            telemetry.addData("forward unlatching movement", "true", runtime.milliseconds());
-            telemetry.update();
-        }
-        rightMotor.setPower(0);
-        leftMotor.setPower(0);
-        sleep(500);
-
-        runtime.reset();
-
-        rightMotor.setPower(-rightSpeed);
-        leftMotor.setPower(leftSpeed);
-        while(opModeIsActive() && runtime.milliseconds() < 500){
-            telemetry.addData("turning to crater", "true", runtime.milliseconds());
-            telemetry.update();
-        }
-        rightMotor.setPower(0);
-        leftMotor.setPower(0);
-        sleep(500);
-        runtime.reset();
-        //
-        rightMotor.setPower(-rightSpeed * 0.5);
-        leftMotor.setPower(leftSpeed * 0.5);
-        while(opModeIsActive() && runtime.milliseconds() < 100){
-            telemetry.addData("spaz up", "true", runtime.milliseconds());
-            telemetry.update();
-        }
-        rightMotor.setPower(0);
-        leftMotor.setPower(0);
-        sleep(250);
-        runtime.reset();
-        //
         // go straight from start to crater
         leftMotor.setPower(leftSpeed);
         rightMotor.setPower(rightSpeed);
         //full speed ahead
         //go go go go go
-        while(opModeIsActive() && runtime.seconds() < 2.0){
+        while(opModeIsActive() && runtime.seconds() < 2){
             telemetry.addData("To Crater", "true", runtime.seconds());
             telemetry.update();
         }

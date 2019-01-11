@@ -10,9 +10,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.Range;
 
-@Autonomous (name = "Sleeping Crater", group = "Autonomous")
+@Autonomous (name = "Depot Autonomous w/ Latch", group = "Autonomous")
 //@Disabled
-public class SleepingCrater extends LinearOpMode {
+public class DepotAutonomousLatch extends LinearOpMode {
 
 
 
@@ -75,14 +75,7 @@ public class SleepingCrater extends LinearOpMode {
 
 
 
-
         // start
-        while(opModeIsActive() && runtime.seconds() < 15){
-            telemetry.addData("Waiting for space", "true", runtime.seconds());
-            telemetry.update();
-        }
-        runtime.reset();
-
         set_latch_motor(-1);
         while(opModeIsActive() && runtime.seconds() < 3){
             telemetry.addData("Unlatching...", "true", runtime.seconds());
@@ -107,7 +100,7 @@ public class SleepingCrater extends LinearOpMode {
         rightMotor.setPower(-rightSpeed);
         leftMotor.setPower(leftSpeed);
         while(opModeIsActive() && runtime.milliseconds() < 500){
-            telemetry.addData("turning to crater", "true", runtime.milliseconds());
+            telemetry.addData("turning to depot", "true", runtime.milliseconds());
             telemetry.update();
         }
         rightMotor.setPower(0);
@@ -130,17 +123,32 @@ public class SleepingCrater extends LinearOpMode {
 
         runtime.reset();
 
-        // go straight from start to crater
+        // go straight from start to depot
         leftMotor.setPower(leftSpeed);
         rightMotor.setPower(rightSpeed);
         //full speed ahead
         //go go go go go
-        while(opModeIsActive() && runtime.seconds() < 2.0){
-            telemetry.addData("To Crater", "true", runtime.seconds());
+        while(opModeIsActive() && runtime.seconds() < 1.5){
+            telemetry.addData("To Depot", "true", runtime.seconds());
             telemetry.update();
         }
         leftMotor.setPower(0);
         rightMotor.setPower(0);
+
+
+        // go straight from depot to lander
+        leftMotor.setPower(-leftSpeed);
+        rightMotor.setPower(-rightSpeed);
+        //full speed back
+        //go go go go go
+        while(opModeIsActive() && runtime.seconds() < 1.5){
+            telemetry.addData("Back To Lander", "true", runtime.seconds());
+            telemetry.update();
+        }
+        leftMotor.setPower(0);
+        rightMotor.setPower(0);
+
+
         telemetry.addData("Autonomous Finished", "true", runtime.seconds());
         telemetry.update();
     }

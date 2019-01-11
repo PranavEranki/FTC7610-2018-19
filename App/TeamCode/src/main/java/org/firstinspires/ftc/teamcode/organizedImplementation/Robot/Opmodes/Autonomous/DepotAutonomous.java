@@ -20,8 +20,6 @@ public class DepotAutonomous extends LinearOpMode{
     private Servo leftServo;
     private Servo rightServo;
 
-    private DcMotor latch_motor;
-
     private final double leftSpeed = 1.0;
     private final double rightSpeed = 0.5;
 
@@ -33,9 +31,6 @@ public class DepotAutonomous extends LinearOpMode{
 
         turningMotor = hardwareMap.dcMotor.get("turning_motor");
         extendingMotor = hardwareMap.dcMotor.get("extending_motor");
-
-        latch_motor = hardwareMap.dcMotor.get("latch_motor");
-        latch_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         leftServo = hardwareMap.servo.get("left_servo");
         rightServo = hardwareMap.servo.get("right_servo");
@@ -50,37 +45,6 @@ public class DepotAutonomous extends LinearOpMode{
 
 
 
-
-        // start
-        while(opModeIsActive() && runtime.seconds() < 15){
-            telemetry.addData("Waiting for space", "true", runtime.seconds());
-            telemetry.update();
-        }
-
-        runtime.reset();
-
-        // check for speed
-        latch_motor.setPower(-0.5);
-        while(opModeIsActive() && runtime.seconds() < 3){
-            telemetry.addData("Unlatching", "true", runtime.seconds());
-            telemetry.update();
-        }
-        latch_motor.setPower(0);
-
-        sleep(500);
-
-        runtime.reset();
-
-        leftMotor.setPower(leftSpeed);
-        rightMotor.setPower(rightSpeed);
-        while(opModeIsActive() && runtime.seconds() < 0.2){
-            telemetry.addData("Moving back", "true", runtime.seconds());
-            telemetry.update();
-        }
-        latch_motor.setPower(0);
-
-        runtime.reset();
-
         // go straight from start to depot
         leftMotor.setPower(leftSpeed);
         rightMotor.setPower(rightSpeed);
@@ -90,39 +54,6 @@ public class DepotAutonomous extends LinearOpMode{
         }
         leftMotor.setPower(0);
         rightMotor.setPower(0);
-
-
-
-        /*
-
-        runtime.reset();
-        // bring out marker and put down
-        // still need to code for motor for linear slide
-        turningMotor.setPower(1);
-        extendingMotor.setPower(1);
-        while(opModeIsActive() && runtime.seconds() < 3.0){
-            telemetry.addData("Move Motor", "true", runtime.seconds());
-            telemetry.update();
-        }
-        turningMotor.setPower(0);
-        extendingMotor.setPower(0);
-
-        leftServo.setPosition(0);
-        rightServo.setPosition(1);
-        telemetry.addData("Dropped", "true", runtime.seconds());
-        telemetry.update();
-
-        runtime.reset();
-        turningMotor.setPower(-1);
-        extendingMotor.setPower(-1);
-        while(opModeIsActive() && runtime.seconds() < 3.0){
-            telemetry.addData("Put the motor back at its original position", "true", runtime.seconds());
-            telemetry.update();
-        }
-        turningMotor.setPower(0);
-        extendingMotor.setPower(0);
-
-        */
 
 
         runtime.reset();
