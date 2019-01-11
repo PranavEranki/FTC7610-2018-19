@@ -284,8 +284,8 @@ public class NewTeleOpLatch extends LinearOpMode {
         telemetry.addData("Right Servo Position: ", rightServo.getPosition());
         telemetry.addData("Motors (gamepad 1)", "use left and right sticks");
         telemetry.addData("Core Hex Motors (gamepad 2)", "use left and right triggers (turning)");
-        telemetry.addData("To switch between modes (gamepad 1)", "press right bumper"); // ?
-        telemetry.addData("To stop all movement (gamepad 1)", "press left bumper"); // ?
+        telemetry.addData("To switch between modes (gamepad 1)", "press right bumper");
+        telemetry.addData("To stop all movement (gamepad 1)", "press left bumper");
     }
 
     public void set_latch_motor(double speed){
