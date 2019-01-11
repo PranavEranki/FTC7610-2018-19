@@ -14,6 +14,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 
 @TeleOp(name = "Testing Gyro V2", group = "Gyro")
+@Disabled
 public class TestingGyroV2 extends LinearOpMode {
 
 

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.organizedImplementation.Robot.Opmodes.Autonomous;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -8,7 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous (name = "Depot Autonomous More", group = "Autonomous")
-//@Disabled
+@Disabled
 public class DepotAutonomousMore extends LinearOpMode{
 
     private DcMotor leftMotor;
