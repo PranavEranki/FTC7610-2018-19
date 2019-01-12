@@ -135,6 +135,7 @@ public class NewTeleOpLatch extends LinearOpMode {
             // switch between modes
             if (gamepad1.right_bumper) {
                 accelMode = !accelMode;
+                sleep(500);
             }
 
 
@@ -142,33 +143,34 @@ public class NewTeleOpLatch extends LinearOpMode {
 
             // motor code
             if (accelMode) {
-                telemetry.addData("Mode", "Acceleration");
-                addMessages();
-
-                // Everything stops moving when left bumper is pressed
-                if (gamepad1.left_bumper) {
-                    leftPower = 0;
-                    rightPower = 0;
-                }
-
-                if (gamepad1.left_stick_y > 0) {
-                    if (leftPower < 0) leftPower = limitIncrement(leftPower, DECEL, 0);
-                    else leftPower = limitIncrement(leftPower, ACCEL, 1);
-                } else if (gamepad1.left_stick_y < 0) {
-                    if (leftPower > 0) leftPower = limitDecrement(leftPower, DECEL, 0);
-                    else leftPower = limitDecrement(leftPower, ACCEL, -1);
-                }
-
-                if (gamepad1.right_stick_y > 0) {
-                    if (rightPower < 0) rightPower = limitIncrement(rightPower, DECEL, 0);
-                    else rightPower = limitIncrement(rightPower, ACCEL, 1);
-                } else if (gamepad1.right_stick_y < 0) {
-                    if (rightPower > 0) rightPower = limitDecrement(rightPower, DECEL, 0);
-                    else rightPower = limitDecrement(rightPower, ACCEL, -1);
-                }
-
-                leftMotor.setPower(leftPower * 0.75);
-                rightMotor.setPower(rightPower * 0.75);
+//                telemetry.addData("Mode", "Acceleration");
+//
+//                // Everything stops moving when left bumper is pressed
+//                if (gamepad1.left_bumper) {
+//                    leftPower = 0;
+//                    rightPower = 0;
+//                }
+//
+//                if (gamepad1.left_stick_y > 0) {
+//                    if (leftPower < 0) leftPower = limitIncrement(leftPower, DECEL, 0);
+//                    else leftPower = limitIncrement(leftPower, ACCEL, 1);
+//                } else if (gamepad1.left_stick_y < 0) {
+//                    if (leftPower > 0) leftPower = limitDecrement(leftPower, DECEL, 0);
+//                    else leftPower = limitDecrement(leftPower, ACCEL, -1);
+//                }
+//
+//                if (gamepad1.right_stick_y > 0) {
+//                    if (rightPower < 0) rightPower = limitIncrement(rightPower, DECEL, 0);
+//                    else rightPower = limitIncrement(rightPower, ACCEL, 1);
+//                } else if (gamepad1.right_stick_y < 0) {
+//                    if (rightPower > 0) rightPower = limitDecrement(rightPower, DECEL, 0);
+//                    else rightPower = limitDecrement(rightPower, ACCEL, -1);
+//                }
+//
+//                leftMotor.setPower(leftPower * 0.75);
+//                rightMotor.setPower(rightPower * 0.75);
+                leftMotor.setPower(gamepad1.left_stick_y * 0.5);
+                rightMotor.setPower(gamepad1.right_stick_y * 0.25);
             } else {
                 telemetry.addData("Mode", "No Acceleration");
 

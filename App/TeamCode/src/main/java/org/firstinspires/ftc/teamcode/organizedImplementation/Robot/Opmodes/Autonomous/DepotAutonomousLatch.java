@@ -74,16 +74,25 @@ public class DepotAutonomousLatch extends LinearOpMode {
 
 
 
+        while(opModeIsActive() && runtime.seconds() < 15){
+            telemetry.addData("Waiting for space", "true", runtime.seconds());
+            telemetry.update();
+        }
+        runtime.reset();
+
+
 
         // start
-        set_latch_motor(-1);
-        while(opModeIsActive() && runtime.seconds() < 3){
+        set_latch_motor(-0.5);
+        while(opModeIsActive() && runtime.seconds() < 8.0){
             telemetry.addData("Unlatching...", "true", runtime.seconds());
             telemetry.update();
         }
         set_latch_motor(0);
 
         runtime.reset();
+
+        /*
 
         rightMotor.setPower(rightSpeed);
         leftMotor.setPower(leftSpeed);
@@ -147,6 +156,7 @@ public class DepotAutonomousLatch extends LinearOpMode {
         }
         leftMotor.setPower(0);
         rightMotor.setPower(0);
+        */
 
 
         telemetry.addData("Autonomous Finished", "true", runtime.seconds());
