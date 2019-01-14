@@ -118,10 +118,10 @@ public class DepotAutonomousLatch extends LinearOpMode {
         sleep(500);
 
         runtime.reset();
-
+       */
         rightMotor.setPower(-rightSpeed * 0.5);
         leftMotor.setPower(leftSpeed * 0.5);
-        while(opModeIsActive() && runtime.milliseconds() < 100){
+        while(opModeIsActive() && runtime.milliseconds() < 600){
             telemetry.addData("spaz up", "true", runtime.milliseconds());
             telemetry.update();
         }
@@ -131,7 +131,7 @@ public class DepotAutonomousLatch extends LinearOpMode {
         sleep(250);
 
         runtime.reset();
-
+/*
         // go straight from start to depot
         leftMotor.setPower(leftSpeed);
         rightMotor.setPower(rightSpeed);
