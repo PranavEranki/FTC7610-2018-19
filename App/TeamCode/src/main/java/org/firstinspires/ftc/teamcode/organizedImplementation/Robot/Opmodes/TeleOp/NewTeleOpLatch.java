@@ -26,8 +26,8 @@ public class NewTeleOpLatch extends LinearOpMode {
 
 
 
-
-
+//new off - season stuff
+    private Servo push_servo;
 
 
     // motors
@@ -83,7 +83,8 @@ public class NewTeleOpLatch extends LinearOpMode {
         turningMotor = hardwareMap.dcMotor.get("turning_motor");
 
 
-
+        //new
+        push_servo = hardwareMap.servo.get("push_servo");
 
 
         // latching motor setup
@@ -180,7 +181,14 @@ public class NewTeleOpLatch extends LinearOpMode {
 
 
 
-
+            //team marker new (off - season)
+            if(gamepad1.right_trigger != 0){
+                push_servo.setPosition(0);
+            }else if (gamepad1.left_trigger != 0){
+                push_servo.setPosition(1);
+            }else{
+                push_servo.setPosition(0.5);
+            }
 
 
 
@@ -288,6 +296,9 @@ public class NewTeleOpLatch extends LinearOpMode {
         telemetry.addData("Core Hex Motors (gamepad 2)", "use left and right triggers (turning) and bumpers (extending/bringing back)");
         telemetry.addData("To switch between modes (gamepad 1)", "press right bumper");
         telemetry.addData("To stop all movement (gamepad 1)", "press left bumper");
+        //new------->
+        telemetry.addData("Servo Position: ", push_servo.getPosition());
+        //new-----^
     }
 
     public void set_latch_motor(double speed){

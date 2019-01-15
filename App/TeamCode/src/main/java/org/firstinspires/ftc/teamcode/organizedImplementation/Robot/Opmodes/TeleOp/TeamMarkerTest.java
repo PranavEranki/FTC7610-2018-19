@@ -16,6 +16,7 @@ public class TeamMarkerTest extends LinearOpMode {
     private Servo push_servo;
     private ElapsedTime runtime = new ElapsedTime();
 
+    @Override
     public void runOpMode(){
         push_servo = hardwareMap.servo.get("push_servo");
 
@@ -30,7 +31,11 @@ public class TeamMarkerTest extends LinearOpMode {
 
         while(opModeIsActive()){
             if(gamepad1.right_trigger != 0){
-                push_servo.setPosition(gamepad1.right_trigger);
+                push_servo.setPosition(0);
+            }else if (gamepad1.left_trigger != 0){
+                push_servo.setPosition(1);
+            }else{
+                push_servo.setPosition(0.5);
             }
             telemetry.addData("Servo Position: ", push_servo.getPosition());
             telemetry.update();
