@@ -21,7 +21,7 @@ public class TeamMarkerAutonomous extends LinearOpMode {
         telemetry.addData("hardware map finished","true");
         telemetry.update();
         runtime.reset();
-        push_servo.setPosition(1);
+        push_servo.setPosition(0);
         while(opModeIsActive() && runtime.milliseconds() < 500){
             telemetry.addData("push out","true");
             telemetry.update();
@@ -29,14 +29,6 @@ public class TeamMarkerAutonomous extends LinearOpMode {
         push_servo.setPosition(0.5);
         runtime.reset();
 
-        push_servo.setPosition(0);
-        while(opModeIsActive() && runtime.milliseconds() < 100){
-            telemetry.addData("push out","true");
-            telemetry.update();
-        }
-        push_servo.setPosition(0.5);
-        runtime.reset();
-
         push_servo.setPosition(1);
         while(opModeIsActive() && runtime.milliseconds() < 100){
             telemetry.addData("push out","true");
@@ -94,6 +86,14 @@ public class TeamMarkerAutonomous extends LinearOpMode {
         runtime.reset();
 
         push_servo.setPosition(0);
+        while(opModeIsActive() && runtime.milliseconds() < 100){
+            telemetry.addData("push out","true");
+            telemetry.update();
+        }
+        push_servo.setPosition(0.5);
+        runtime.reset();
+
+        push_servo.setPosition(1);
         while(opModeIsActive() && runtime.milliseconds() < 600){
             telemetry.addData("push out","true");
             telemetry.update();
